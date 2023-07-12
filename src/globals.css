@@ -1,0 +1,34 @@
+:root {
+  font-family: "Manrope", sans-serif;
+  line-height: 1.5;
+
+  /* colors */
+
+  --clr-white: hsla(0, 0%, 100%, 1);
+  --clr-orange-100: hsla(22, 93%, 75%, 1);
+  --clr-orange-200: hsla(21, 65%, 57%, 1);
+  --clr-black-100: hsla(0, 0%, 6%, 1);
+  --clr-black-200: hsla(0, 0%, 0%, 1);
+  --clr-gray-100: hsla(0, 0%, 98%, 1);
+  --clr-gray-200: hsla(0, 0%, 95%, 1);
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
