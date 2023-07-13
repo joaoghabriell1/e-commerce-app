@@ -46,8 +46,8 @@ const ProductsList = ({ productsList }: Props) => {
 const Ul = styled.ul`
   margin-top: 1rem;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(256px, 1fr));
+  gap: 2.5rem;
 `;
 
 export default ProductsList;

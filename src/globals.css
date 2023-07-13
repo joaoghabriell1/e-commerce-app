@@ -3,14 +3,14 @@
   line-height: 1.5;
 
   /* colors */
+  --clr-main-bg: #F0F0F5;
 
   --clr-white: hsla(0, 0%, 100%, 1);
   --clr-orange-100: hsla(22, 93%, 75%, 1);
   --clr-orange-200: hsla(21, 65%, 57%, 1);
   --clr-black-100: hsla(0, 0%, 6%, 1);
   --clr-black-200: hsla(0, 0%, 0%, 1);
-  --clr-gray-100: hsla(0, 0%, 98%, 1);
-  --clr-gray-200: hsla(0, 0%, 95%, 1);
+  --clr-gray-100:hsla(240, 8%, 28%, 1);
 
   color-scheme: light dark;
 }
@@ -28,11 +28,17 @@ a {
 * {
   margin: 0;
 }
+
+html{
+  font-size: 62.5%;
+}
 body {
   color: #000;
+  background: var(--clr-main-bg);
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-size: 1.6rem;
   font-weight: 400;
 }
 

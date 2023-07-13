@@ -14,36 +14,33 @@ const ProductCard = ({ price, rating, title, thumbnail }: Product) => {
         <div>
           <Title>{title}</Title>
         </div>
-        <Rating>
+        {/*     <Rating>
           <div>
             <img src={star} alt="rating-star" />
           </div>
           <span>{rating}</span>
-        </Rating>
+        </Rating> */}
+        <Price>U$ {price},00</Price>
       </TitlePriceWrapper>
-      <Price>U$ {price},00</Price>
     </Container>
   );
 };
 
 const Container = styled.div`
-  background: var(--clr-gray-100);
-  padding: 1rem;
-  border-radius: 20px;
+  background: var(--clr-white);
+  border-radius: 10px;
+  overflow: hidden;
   display: grid;
   position: relative;
 `;
 
 const TitlePriceWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  padding: 0.9rem 1.2rem;
+  display: grid;
 `;
 
 const Thumbnail = styled.div`
-  height: 200px;
-  border-radius: 10px;
-  overflow: hidden;
+  height: 275px;
   img {
     height: 100%;
     object-fit: cover;
@@ -51,7 +48,11 @@ const Thumbnail = styled.div`
 `;
 
 const Title = styled.h3`
-  color: black;
+  color: var(--clr-gray-100);
+  font-weight: 400;
+  font-size: 1.6rem;
+  border-bottom: 1px solid #dce2e5;
+  padding-bottom: 0.8rem;
 `;
 
 const Rating = styled.div`
@@ -63,6 +64,7 @@ const Rating = styled.div`
 `;
 
 const Price = styled.div`
+  padding-top: 0.8rem;
   font-weight: bold;
 `;
 

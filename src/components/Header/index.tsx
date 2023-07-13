@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import cart from "../../assets/cart.svg";
+import cart from "../../assets/shopping-bag.svg";
 import { MainContainer } from "../../globalSyles";
 
 const Header = () => {
@@ -34,12 +34,11 @@ const Cart = styled.div`
 `;
 
 const HeaderTag = styled.header`
-  background: var(--clr-black-100);
-  padding-block: 36px;
+  background: var(--clr-white);
+  padding-block: 16px;
 `;
 
 const Logo = styled.div`
-  color: var(--clr-white);
   font-weight: bold;
   font-size: 32px;
   &:hover {
