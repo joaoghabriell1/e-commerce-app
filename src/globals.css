@@ -13,7 +13,6 @@
   --clr-gray-200: hsla(0, 0%, 95%, 1);
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
 }
 
 ul {
@@ -26,9 +25,16 @@ a {
   text-decoration: none;
   color: inherit;
 }
-
+* {
+  margin: 0;
+}
 body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-weight: 400;
+}
+
+img {
+  width: 100%;
 }

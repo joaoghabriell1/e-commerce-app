@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import cart from "../../assets/cart.svg";
 import { MainContainer } from "../../globalSyles";
-import { useAppSelector } from "../../hooks/redux-hooks";
 
 const Header = () => {
   return (
@@ -29,6 +28,9 @@ const Cart = styled.div`
   img {
     height: 100%;
   }
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const HeaderTag = styled.header`
@@ -37,7 +39,11 @@ const HeaderTag = styled.header`
 `;
 
 const Logo = styled.div`
+  color: var(--clr-white);
   font-weight: bold;
   font-size: 32px;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 export default Header;

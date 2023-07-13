@@ -12,7 +12,7 @@ const useFetchProducts = (url: string): ProductsFetchResponse => {
     try {
       const response = await fetch("https://dummyjson.com/products");
       const data = await response.json();
-      setProducts(data);
+      setProducts(data.products);
     } catch (error) {
       setError(error);
     }
