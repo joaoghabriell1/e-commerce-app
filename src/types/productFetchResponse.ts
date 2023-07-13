@@ -1,7 +1,7 @@
-import { ProductsApiResponse } from "./productsApiResponse";
+import { Product } from "./product";
 
 export interface ProductsFetchResponse {
-  products: ProductsApiResponse | null;
+  products: Product[];
   loading: boolean;
   error: any;
 }

@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import logo from "../../assets/logo.svg";
 import cart from "../../assets/cart.svg";
 import { MainContainer } from "../../globalSyles";
+import { useAppSelector } from "../../hooks/redux-hooks";
 
 const Header = () => {
   return (

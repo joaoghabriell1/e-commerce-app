@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { ProductsFetchResponse } from "../types/productFetchResponse";
-import { ProductsApiResponse } from "../types/productsApiResponse";
+import { Product } from "../types/product";
 
 const useFetchProducts = (url: string): ProductsFetchResponse => {
-  const [products, setProducts] = useState<ProductsApiResponse | null>(null);
+  const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<any>();
 
