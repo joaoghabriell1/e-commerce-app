@@ -1,11 +1,13 @@
 import { styled } from "styled-components";
 import { Product } from "../../types/product";
+import AddToCartBtn from "./AddToCartBtn";
 import star from "../../assets/star.svg";
 
 const ProductCard = ({ price, rating, title, thumbnail }: Product) => {
   return (
     <Container>
       <Thumbnail>
+        <AddToCartBtn />
         <img src={thumbnail} alt="product-thumbnail" />
       </Thumbnail>
       <TitlePriceWrapper>
@@ -25,10 +27,11 @@ const ProductCard = ({ price, rating, title, thumbnail }: Product) => {
 };
 
 const Container = styled.div`
-  background: var(--clr-gray-200);
+  background: var(--clr-gray-100);
   padding: 1rem;
   border-radius: 20px;
   display: grid;
+  position: relative;
 `;
 
 const TitlePriceWrapper = styled.div`
