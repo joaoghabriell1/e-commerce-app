@@ -8,17 +8,18 @@ const ProductCard = ({ price, rating, title, thumbnail }: Product) => {
       <Thumbnail>
         <img src={thumbnail} alt="product-thumbnail" />
       </Thumbnail>
-      <div>
-        <Title>{title}</Title>
-      </div>
-
-      <Price>U$ {price},00</Price>
-      <Rating>
+      <TitlePriceWrapper>
         <div>
-          <img src={star} alt="rating-star" />
+          <Title>{title}</Title>
         </div>
-        <span>{rating}</span>
-      </Rating>
+        <Rating>
+          <div>
+            <img src={star} alt="rating-star" />
+          </div>
+          <span>{rating}</span>
+        </Rating>
+      </TitlePriceWrapper>
+      <Price>U$ {price},00</Price>
     </Container>
   );
 };
@@ -27,6 +28,13 @@ const Container = styled.div`
   background: var(--clr-gray-200);
   padding: 1rem;
   border-radius: 20px;
+  display: grid;
+`;
+
+const TitlePriceWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 const Thumbnail = styled.div`
@@ -51,6 +59,8 @@ const Rating = styled.div`
   }
 `;
 
-const Price = styled.div``;
+const Price = styled.div`
+  font-weight: bold;
+`;
 
 export default ProductCard;
