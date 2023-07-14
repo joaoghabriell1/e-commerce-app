@@ -3,14 +3,15 @@
   line-height: 1.5;
 
   /* colors */
-  --clr-main-bg: #F0F0F5;
+  --clr-main-bg: #f0f0f5;
 
   --clr-white: hsla(0, 0%, 100%, 1);
   --clr-orange-100: hsla(22, 93%, 75%, 1);
   --clr-orange-200: hsla(21, 65%, 57%, 1);
   --clr-black-100: hsla(0, 0%, 6%, 1);
   --clr-black-200: hsla(0, 0%, 0%, 1);
-  --clr-gray-100:hsla(240, 8%, 28%, 1);
+  --clr-gray-100: hsla(240, 8%, 28%, 1);
+  --clr-gray-200: hsla(202, 11%, 96%, 1);
 
   color-scheme: light dark;
 }
@@ -29,7 +30,7 @@ a {
   margin: 0;
 }
 
-html{
+html {
   font-size: 62.5%;
 }
 body {

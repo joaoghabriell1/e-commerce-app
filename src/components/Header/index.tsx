@@ -1,6 +1,7 @@
+import { Link } from "react-router-dom";
+import { MainContainer } from "../../globalSyles";
 import styled from "styled-components";
 import cart from "../../assets/shopping-bag.svg";
-import { MainContainer } from "../../globalSyles";
 
 const Header = () => {
   return (
@@ -9,7 +10,9 @@ const Header = () => {
         <HeaderContainer>
           <Logo>e-commerce</Logo>
           <Cart>
-            <img src={cart} alt="" />
+            <Link to="shop-bag">
+              <img src={cart} alt="" />
+            </Link>
           </Cart>
         </HeaderContainer>
       </MainContainer>

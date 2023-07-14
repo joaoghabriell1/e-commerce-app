@@ -27,8 +27,6 @@ const BtnContainer = styled.div`
 
 const CartImg = styled.img`
   width: 25px;
-  filter: invert(0%) sepia(0%) saturate(7473%) hue-rotate(239deg)
-    brightness(102%) contrast(106%);
 `;
 
 export default AddToCartBtn;
