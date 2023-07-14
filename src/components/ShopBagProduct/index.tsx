@@ -1,28 +1,24 @@
 import { styled } from "styled-components";
-import goBackIcon from "../../assets/goback-icon.svg";
 import DeleteProductBtn from "./DeleteProductBtn";
+import { cartItem } from "../../types/cartItem";
 
-const ShopBagProduct = () => {
+const ShopBagProduct = ({ title, description, price, thumbnail }: cartItem) => {
   return (
     <Container>
       <div>
-        <ProductImg src={goBackIcon} alt="product-GoBackIcon" />
+        <ProductImg src={thumbnail} alt="product-GoBackIcon" />
       </div>
       <InfoContainer>
         <div>
           <Wrapper>
-            <ProductTitle>Caneca de cerâmica rústica</ProductTitle>
+            <ProductTitle>{title}</ProductTitle>
             <DeleteProductBtn />
           </Wrapper>
-          <Description>
-            Aqui vem um texto descritivo do Descriptionroduto, esta caixa de
-            texto servirá apenas de exemplo para que simule algum texto que
-            venha a ser inserido nesse campo, descrevendo tal produto.
-          </Description>
+          <Description>{description}</Description>
         </div>
         <AmountPriceWrapper>
           <AmountInput type="number" min="1" defaultValue={1} id="amount" />
-          <Price>R$ 40,00</Price>
+          <Price>R$ {price},00</Price>
         </AmountPriceWrapper>
       </InfoContainer>
     </Container>
@@ -68,6 +64,7 @@ const AmountPriceWrapper = styled.div`
 `;
 
 const AmountInput = styled.input`
+  color: black;
   width: 65px;
   padding-block: 0.8rem;
   padding-left: 1.2rem;

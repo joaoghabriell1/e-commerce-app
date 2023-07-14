@@ -12,7 +12,11 @@ const AddToCartBtn = ({ cartInfo }: Props) => {
   const dispatch = useAppDispatch();
 
   const clickHandler = () => {
-    dispatch(addProduct(cartInfo));
+    const product = {
+      ...cartInfo,
+      amount: 1,
+    };
+    dispatch(addProduct(product));
   };
 
   return (

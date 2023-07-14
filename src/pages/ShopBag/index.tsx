@@ -8,6 +8,7 @@ import ReturnBtn from "./ReturnBtn";
 
 const ShopBag = () => {
   const cartItems = useAppSelector((state) => state.cart.items);
+
   return (
     <MainContainer>
       <Section>
@@ -15,7 +16,7 @@ const ShopBag = () => {
           <ReturnBtn />
           <ShopBagHeading />
           <div>
-            <ShopBagList />
+            <ShopBagList cartItems={cartItems} />
           </div>
         </div>
         <OrderSum />

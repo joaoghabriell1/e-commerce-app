@@ -1,10 +1,25 @@
 import styled from "styled-components";
 import ShopBagProduct from "./ShopBagProduct";
+import { cartItem } from "../types/cartItem";
 
-const ShopBagList = () => {
+interface Props {
+  cartItems: cartItem[];
+}
+
+const ShopBagList = ({ cartItems }: Props) => {
   return (
     <Ul>
-      <ShopBagProduct />
+      {cartItems.map((item) => {
+        return (
+          <ShopBagProduct
+            title={item.title}
+            description={item.description}
+            price={item.price}
+            thumbnail={item.thumbnail}
+            amount={item.amount}
+          />
+        );
+      })}
     </Ul>
   );
 };
