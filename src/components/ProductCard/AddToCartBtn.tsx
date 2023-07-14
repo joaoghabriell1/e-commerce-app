@@ -1,10 +1,23 @@
 import { styled } from "styled-components";
+import { useAppDispatch } from "../../hooks/redux-hooks";
+import { cartItem } from "../../types/cartItem";
 import cart from "../../assets/add-to-cart..svg";
+import { addProduct } from "../../store/cart-slice";
 
-const AddToCartBtn = () => {
+interface Props {
+  cartInfo: cartItem;
+}
+
+const AddToCartBtn = ({ cartInfo }: Props) => {
+  const dispatch = useAppDispatch();
+
+  const clickHandler = () => {
+    dispatch(addProduct(cartInfo));
+  };
+
   return (
     <BtnContainer>
-      <button>
+      <button onClick={clickHandler}>
         <CartImg src={cart} alt="cart-btn" />
       </button>
     </BtnContainer>

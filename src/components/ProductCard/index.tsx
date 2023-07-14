@@ -1,13 +1,21 @@
 import { styled } from "styled-components";
 import { Product } from "../../types/product";
 import AddToCartBtn from "./AddToCartBtn";
-import star from "../../assets/star.svg";
+import { cartItem } from "../../types/cartItem";
 
-const ProductCard = ({ price, rating, title, thumbnail }: Product) => {
+const ProductCard = ({ price, description, title, thumbnail, id }: Product) => {
+  const addToCartInfo: cartItem = {
+    title,
+    price,
+    id,
+    thumbnail,
+    description,
+  };
+
   return (
     <Container>
       <Thumbnail>
-        <AddToCartBtn />
+        <AddToCartBtn cartInfo={addToCartInfo} />
         <img src={thumbnail} alt="product-thumbnail" />
       </Thumbnail>
       <TitlePriceWrapper>

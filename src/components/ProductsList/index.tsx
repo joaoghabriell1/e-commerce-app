@@ -24,6 +24,7 @@ const ProductsList = ({ productsList }: Props) => {
         }) => {
           return (
             <ProductCard
+              key={id}
               id={id}
               title={title}
               price={price}
