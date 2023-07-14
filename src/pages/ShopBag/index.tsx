@@ -1,34 +1,30 @@
-import { Link } from "react-router-dom";
 import { MainContainer } from "../../globalSyles";
-import goback from "../../assets/goback-icon.svg";
-import ShopBagProduct from "../../components/ShopBagProduct";
+import styled from "styled-components";
+import OrderSum from "../../components/OrderSum";
+import ShopBagHeading from "./Heading";
+import ShopBagList from "../../components/ShopBagList";
+import ReturnBtn from "./ReturnBtn";
 
 const ShopBag = () => {
   return (
     <MainContainer>
-      <section>
-        <header>
-          <button>
-            <Link to="/">
-              <img src={goback} alt="go-back icon" />
-              Voltar
-            </Link>
-          </button>
-          <div>
-            <h2>SEU CARRINHO</h2>
-            <div>
-              <span>Total(3 produtos)</span>
-              <span>RS161,00</span>
-            </div>
-          </div>
-        </header>
+      <Section>
         <div>
-          <ShopBagProduct />
+          <ReturnBtn />
+          <ShopBagHeading />
+          <div>
+            <ShopBagList />
+          </div>
         </div>
-      </section>
-      <aside></aside>
+        <OrderSum />
+      </Section>
     </MainContainer>
   );
 };
+const Section = styled.section`
+  display: flex;
+  gap: 3.2rem;
+  margin-top: 2.5rem;
+`;
 
 export default ShopBag;

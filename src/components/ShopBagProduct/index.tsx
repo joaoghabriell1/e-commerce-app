@@ -29,7 +29,7 @@ const ShopBagProduct = () => {
   );
 };
 
-const Container = styled.div`
+const Container = styled.li`
   display: flex;
   background: var(--clr-white);
   max-width: 736px;
