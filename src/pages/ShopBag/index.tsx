@@ -24,7 +24,7 @@ const ShopBag = () => {
             <ShopBagList cartIsEmpty={cartIsEmpty} cartItems={cartItems} />
           </div>
         </div>
-        {!cartIsEmpty ? <OrderSum /> : null}
+        {!cartIsEmpty ? <OrderSum cartTotal={cartTotal} /> : null}
       </Section>
     </MainContainer>
   );

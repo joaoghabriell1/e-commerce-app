@@ -1,6 +1,9 @@
 import styled from "styled-components";
-
-const OrderSum = () => {
+interface Props {
+  cartTotal: number;
+}
+const OrderSum = ({ cartTotal }: Props) => {
+  console.log(cartTotal);
   return (
     <Aside>
       <div>
@@ -10,7 +13,7 @@ const OrderSum = () => {
         <Wrapper>
           <FlexContainer>
             <span>Subtotal de produtos</span>
-            <span>R$ 161,00</span>
+            <span>R$ {cartTotal},00</span>
           </FlexContainer>
           <FlexContainer>
             <span>Entrega</span>
@@ -19,7 +22,7 @@ const OrderSum = () => {
         </Wrapper>
         <FlexContainer>
           <Total>Total</Total>
-          <Total>R$ 201,00</Total>
+          <Total>R$ {cartTotal + 40},00</Total>
         </FlexContainer>
         <div>
           <Button>finalizar a compra</Button>
