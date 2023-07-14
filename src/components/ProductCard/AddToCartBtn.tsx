@@ -14,7 +14,6 @@ const AddToCartBtn = ({ cartInfo }: Props) => {
   const clickHandler = () => {
     const product = {
       ...cartInfo,
-      amount: 1,
     };
     dispatch(addProduct(product));
   };

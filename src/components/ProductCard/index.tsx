@@ -10,6 +10,7 @@ const ProductCard = ({ price, description, title, thumbnail, id }: Product) => {
     id,
     thumbnail,
     description,
+    amount: 1,
   };
 
   return (
@@ -22,12 +23,6 @@ const ProductCard = ({ price, description, title, thumbnail, id }: Product) => {
         <div>
           <Title>{title}</Title>
         </div>
-        {/*     <Rating>
-          <div>
-            <img src={star} alt="rating-star" />
-          </div>
-          <span>{rating}</span>
-        </Rating> */}
         <Price>U$ {price},00</Price>
       </TitlePriceWrapper>
     </Container>

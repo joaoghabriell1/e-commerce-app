@@ -1,8 +1,27 @@
+import { useRef } from "react";
 import { styled } from "styled-components";
 import DeleteProductBtn from "./DeleteProductBtn";
 import { cartItem } from "../../types/cartItem";
+import { useAppDispatch } from "../../hooks/redux-hooks";
+import { changeAmount } from "../../store/cart-slice";
 
-const ShopBagProduct = ({ title, description, price, thumbnail }: cartItem) => {
+const ShopBagProduct = ({
+  title,
+  description,
+  price,
+  thumbnail,
+  amount,
+  id,
+}: cartItem) => {
+  const dispatch = useAppDispatch();
+  const amountInputRef = useRef<HTMLInputElement>(null);
+
+  const amountChangeHandler = () => {
+    const value = +amountInputRef.current!.value;
+
+    dispatch(changeAmount({ id: id, amount: value }));
+  };
+
   return (
     <Container>
       <div>
@@ -12,12 +31,19 @@ const ShopBagProduct = ({ title, description, price, thumbnail }: cartItem) => {
         <div>
           <Wrapper>
             <ProductTitle>{title}</ProductTitle>
-            <DeleteProductBtn />
+            <DeleteProductBtn id={id} />
           </Wrapper>
           <Description>{description}</Description>
         </div>
         <AmountPriceWrapper>
-          <AmountInput type="number" min="1" defaultValue={1} id="amount" />
+          <AmountInput
+            onChange={amountChangeHandler}
+            ref={amountInputRef}
+            type="number"
+            min="1"
+            defaultValue={amount}
+            id="amount"
+          />
           <Price>R$ {price},00</Price>
         </AmountPriceWrapper>
       </InfoContainer>

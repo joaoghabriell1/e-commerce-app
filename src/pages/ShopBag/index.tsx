@@ -7,23 +7,29 @@ import ShopBagList from "../../components/ShopBagList";
 import ReturnBtn from "./ReturnBtn";
 
 const ShopBag = () => {
-  const cartItems = useAppSelector((state) => state.cart.items);
-
+  const cartItems = useAppSelector((state) => state!.cart.items);
+  const cartTotal = useAppSelector((state) => state.cart.total);
+  const cartIsEmpty = cartItems.length === 0;
   return (
     <MainContainer>
       <Section>
         <div>
           <ReturnBtn />
-          <ShopBagHeading />
+          <ShopBagHeading
+            cartTotal={cartTotal}
+            cartItems={cartItems}
+            cartIsEmpty={cartIsEmpty}
+          />
           <div>
-            <ShopBagList cartItems={cartItems} />
+            <ShopBagList cartIsEmpty={cartIsEmpty} cartItems={cartItems} />
           </div>
         </div>
-        <OrderSum />
+        {!cartIsEmpty ? <OrderSum /> : null}
       </Section>
     </MainContainer>
   );
 };
+
 const Section = styled.section`
   display: flex;
   gap: 3.2rem;

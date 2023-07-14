@@ -1,9 +1,20 @@
 import thrashCan from "../../assets/thrash-can.svg";
 import styled from "styled-components";
+import { useAppDispatch } from "../../hooks/redux-hooks";
+import { removeItem } from "../../store/cart-slice";
 
-const DeleteProductBtn = () => {
+interface Props {
+  id: number;
+}
+const DeleteProductBtn = ({ id }: Props) => {
+  const dispatch = useAppDispatch();
+
+  const clickHandler = () => {
+    dispatch(removeItem(id));
+  };
+
   return (
-    <Button>
+    <Button onClick={clickHandler}>
       <img src={thrashCan} alt="thrash can icon" />
     </Button>
   );

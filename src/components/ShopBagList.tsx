@@ -4,6 +4,7 @@ import { cartItem } from "../types/cartItem";
 
 interface Props {
   cartItems: cartItem[];
+  cartIsEmpty: boolean;
 }
 
 const ShopBagList = ({ cartItems }: Props) => {
@@ -12,6 +13,8 @@ const ShopBagList = ({ cartItems }: Props) => {
       {cartItems.map((item) => {
         return (
           <ShopBagProduct
+            key={item.id}
+            id={item.id}
             title={item.title}
             description={item.description}
             price={item.price}
