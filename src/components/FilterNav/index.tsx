@@ -1,6 +1,9 @@
 import styled from "styled-components";
 import { useAppDispatch } from "../../hooks/redux-hooks";
-import { setFilter } from "../../store/products-slice";
+import {
+  setFilter,
+  setEspecificProductFilter,
+} from "../../store/products-slice";
 
 interface Props {
   filters: string[];
@@ -8,12 +11,13 @@ interface Props {
 }
 
 interface FilterItemProps {
-  currentFilter: boolean;
+  currentfilter: boolean;
 }
 
 const FilterNav = ({ filters, categoryFilter }: Props) => {
   const dispatch = useAppDispatch();
   const filterHandler = (filter: string) => {
+    dispatch(setEspecificProductFilter(null));
     dispatch(setFilter(filter));
   };
 
@@ -21,7 +25,7 @@ const FilterNav = ({ filters, categoryFilter }: Props) => {
     <nav>
       <FilterList>
         <FilterItem
-          currentFilter={categoryFilter === ""}
+          currentfilter={categoryFilter === ""}
           onClick={() => {
             filterHandler("");
           }}
@@ -36,7 +40,7 @@ const FilterNav = ({ filters, categoryFilter }: Props) => {
               }}
               value={filter}
               key={index}
-              currentFilter={categoryFilter === filter}
+              currentfilter={categoryFilter === filter}
             >
               {filter}
             </FilterItem>
@@ -54,7 +58,7 @@ const FilterList = styled.ul`
 
 const FilterItem = styled.li<FilterItemProps>`
   text-transform: uppercase;
-  font-weight: ${(p: FilterItemProps) => (p.currentFilter ? "bold" : "500")};
+  font-weight: ${(p: FilterItemProps) => (p.currentfilter ? "bold" : "500")};
 
   &:hover {
     cursor: pointer;

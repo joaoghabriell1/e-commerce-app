@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { MainContainer } from "../../globalSyles";
 import styled from "styled-components";
+import SearchBar from "../SearchBar";
 import cart from "../../assets/shopping-bag.svg";
 
 const Header = () => {
@@ -9,6 +10,7 @@ const Header = () => {
       <MainContainer>
         <HeaderContainer>
           <Logo>e-commerce</Logo>
+          <SearchBar />
           <Cart>
             <Link to="shop-bag">
               <img src={cart} alt="" />
@@ -23,7 +25,6 @@ const Header = () => {
 const HeaderContainer = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
 `;
 
 const Cart = styled.div`
@@ -42,6 +43,7 @@ const HeaderTag = styled.header`
 `;
 
 const Logo = styled.div`
+  flex: 1;
   font-weight: bold;
   font-size: 32px;
   &:hover {

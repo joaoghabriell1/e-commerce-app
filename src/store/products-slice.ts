@@ -4,13 +4,13 @@ import { Product } from "../types/product";
 interface InitialStateType {
   products: Product[];
   categoryFilter: string;
-  especificProductFilter: string;
+  especificProductFilter: string | null;
 }
 
 const initialState: InitialStateType = {
   products: [],
   categoryFilter: "",
-  especificProductFilter: "",
+  especificProductFilter: null,
 };
 
 const productsSlice = createSlice({
@@ -23,9 +23,16 @@ const productsSlice = createSlice({
     setFilter: (state, action: PayloadAction<string>) => {
       state.categoryFilter = action.payload;
     },
+    setEspecificProductFilter: (
+      state,
+      action: PayloadAction<string | null>
+    ) => {
+      state.especificProductFilter = action.payload;
+    },
   },
 });
 
-export const { setProducts, setFilter } = productsSlice.actions;
+export const { setProducts, setFilter, setEspecificProductFilter } =
+  productsSlice.actions;
 
 export default productsSlice.reducer;

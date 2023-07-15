@@ -5,15 +5,20 @@ import ProductsList from "../../components/ProductsList";
 import FilterNav from "../../components/FilterNav";
 
 const Home = () => {
-  const categoryFilter = useAppSelector(
-    (state) => state.products.categoryFilter
+  const { categoryFilter, products, especificProductFilter } = useAppSelector(
+    (state) => state.products
   );
 
-  const products = useAppSelector((state) => state.products.products);
-
-  const filteredProducts = products.filter(({ category }) => {
+  let filteredProducts = products.filter(({ category }) => {
     return category?.includes(categoryFilter);
   });
+
+  if (especificProductFilter) {
+    filteredProducts = products.filter(({ title }) => {
+      let cleanTitle = title.toLowerCase().trim();
+      return cleanTitle.includes(especificProductFilter);
+    });
+  }
 
   const filters = products
     .map((item) => item.category)
@@ -25,7 +30,10 @@ const Home = () => {
         <Header>
           <FilterNav categoryFilter={categoryFilter} filters={filters} />
         </Header>
-        <ProductsList productsList={filteredProducts} />
+        <ProductsList
+          especificProductFilter={especificProductFilter}
+          productsList={filteredProducts}
+        />
       </MainContainer>
     </>
   );

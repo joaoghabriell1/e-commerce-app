@@ -4,8 +4,13 @@ import ProductCard from "../ProductCard";
 
 interface Props {
   productsList: Product[];
+  especificProductFilter: string | null;
 }
-const ProductsList = ({ productsList }: Props) => {
+const ProductsList = ({ productsList, especificProductFilter }: Props) => {
+  if (especificProductFilter && productsList.length === 0) {
+    return <p>No products were found!</p>;
+  }
+
   return (
     <Ul>
       {productsList.map(
