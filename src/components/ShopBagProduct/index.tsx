@@ -98,7 +98,7 @@ const AmountPriceWrapper = styled.div`
 
 const AmountInput = styled.input`
   color: black;
-  width: 65px;
+  width: 45px;
   padding-block: 0.8rem;
   padding-left: 1.2rem;
   border-radius: 8px;

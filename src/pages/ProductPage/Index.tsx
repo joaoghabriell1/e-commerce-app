@@ -3,11 +3,21 @@ import { MainContainer } from "../../globalSyles";
 import { useLoaderData } from "react-router-dom";
 import { Product } from "../../types/product";
 import { json } from "react-router-dom";
+import AddToCartBtn from "../../components/ProductCard/AddToCartBtn";
 import ReturnBtn from "../ShopBag/ReturnBtn";
+import { cartItem } from "../../types/cartItem";
 
 const ProductPage = () => {
   const data = useLoaderData() as Product;
-  const { thumbnail, description, price, title, category } = data;
+  const { id, thumbnail, description, price, title, category } = data;
+  const addToCartInfo: cartItem = {
+    title,
+    price,
+    id,
+    thumbnail,
+    description,
+    amount: 1,
+  };
   return (
     <>
       <MainContainer>
@@ -30,7 +40,7 @@ const ProductPage = () => {
                 <p>{description}</p>
               </Description>
             </div>
-            <button>adcionar ao carrinho</button>
+            <AddToCartBtn cartInfo={addToCartInfo} />
           </ProductInfo>
         </SectionWrapper>
       </MainContainer>
@@ -84,7 +94,7 @@ const Description = styled.div`
     font-size: 1.5rem;
   }
 `;
-export const Loader = async ({ params }: { params: { productId: string } }) => {
+export const Loader = async ({ params }: any) => {
   const { productId } = params;
   const response = await fetch(`https://dummyjson.com/products/${productId}`);
   if (!response.ok) {

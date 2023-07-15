@@ -3,10 +3,13 @@ import { useAppDispatch } from "../../hooks/redux-hooks";
 import { setEspecificProductFilter } from "../../store/products-slice";
 import styled from "styled-components";
 import searchIcon from "../../assets/search-icon.svg";
+import { useNavigate } from "react-router-dom";
+import { setFilter } from "../../store/products-slice";
 
 const SearchBar = () => {
   const [searchInput, setSearchInput] = useState<string>("");
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchInput(e.target.value);
@@ -14,8 +17,11 @@ const SearchBar = () => {
 
   const handleSearch = () => {
     const cleanInput = searchInput.trim().toLocaleLowerCase();
+    if (cleanInput === "") return;
     dispatch(setEspecificProductFilter(cleanInput));
     setSearchInput("");
+    dispatch(setFilter(""));
+    navigate("/");
   };
 
   return (

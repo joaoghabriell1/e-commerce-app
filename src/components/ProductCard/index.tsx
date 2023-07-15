@@ -1,33 +1,22 @@
 import { styled } from "styled-components";
 import { Product } from "../../types/product";
-import AddToCartBtn from "./AddToCartBtn";
-import { cartItem } from "../../types/cartItem";
 import { Link } from "react-router-dom";
 
-const ProductCard = ({ price, description, title, thumbnail, id }: Product) => {
-  const addToCartInfo: cartItem = {
-    title,
-    price,
-    id,
-    thumbnail,
-    description,
-    amount: 1,
-  };
-
+const ProductCard = ({ price, title, thumbnail, id }: Product) => {
   return (
     <Container>
-      <Thumbnail>
-        <AddToCartBtn cartInfo={addToCartInfo} />
-        <img src={thumbnail} alt="product-thumbnail" />
-      </Thumbnail>
+      <Link to={`/product/${id}`}>
+        <Thumbnail>
+          <img src={thumbnail} alt="product-thumbnail" />
+        </Thumbnail>
+      </Link>
       <TitlePriceWrapper>
         <div>
-          <Title>{title}</Title>
+          <Link to={`/product/${id}`}>
+            <Title>{title}</Title>
+          </Link>
         </div>
         <Price>U$ {price},00</Price>
-        <div>
-          <Link to={`/product/${id}`}>see more</Link>
-        </div>
       </TitlePriceWrapper>
     </Container>
   );
@@ -60,13 +49,8 @@ const Title = styled.h3`
   font-size: 1.6rem;
   border-bottom: 1px solid #dce2e5;
   padding-bottom: 0.8rem;
-`;
-
-const Rating = styled.div`
-  display: flex;
-  font-size: 14px;
-  img {
-    height: 20px;
+  &:hover {
+    color: hsla(16, 100%, 76%, 1);
   }
 `;
 

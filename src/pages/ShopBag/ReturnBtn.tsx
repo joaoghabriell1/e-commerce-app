@@ -25,6 +25,7 @@ const ReturnButton = styled.button`
   margin-bottom: 2.5rem;
   &:hover {
     cursor: pointer;
+    color: hsla(16, 100%, 76%, 1);
   }
 `;
 
