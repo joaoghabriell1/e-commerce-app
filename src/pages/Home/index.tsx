@@ -40,8 +40,7 @@ const Home = () => {
 };
 
 const Header = styled.header`
-  margin-top: 3.5rem;
-  margin-bottom: 8rem;
+  margin-block: 3.5rem;
 `;
 
 export default Home;

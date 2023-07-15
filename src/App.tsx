@@ -2,6 +2,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import RootLayout from "./layout/RootLayout";
 import Home from "./pages/Home";
 import ShopBag from "./pages/ShopBag";
+import ProductPage from "./pages/ProductPage/Index";
+import { Loader as ProductPageLoader } from "./pages/ProductPage/Index";
 function App() {
   const router = createBrowserRouter([
     {
@@ -12,6 +14,11 @@ function App() {
         {
           path: "shop-bag",
           element: <ShopBag />,
+        },
+        {
+          path: "product/:productId",
+          element: <ProductPage />,
+          loader: ProductPageLoader,
         },
       ],
     },

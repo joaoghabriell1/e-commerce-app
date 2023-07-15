@@ -2,6 +2,7 @@ import { styled } from "styled-components";
 import { Product } from "../../types/product";
 import AddToCartBtn from "./AddToCartBtn";
 import { cartItem } from "../../types/cartItem";
+import { Link } from "react-router-dom";
 
 const ProductCard = ({ price, description, title, thumbnail, id }: Product) => {
   const addToCartInfo: cartItem = {
@@ -24,6 +25,9 @@ const ProductCard = ({ price, description, title, thumbnail, id }: Product) => {
           <Title>{title}</Title>
         </div>
         <Price>U$ {price},00</Price>
+        <div>
+          <Link to={`/product/${id}`}>see more</Link>
+        </div>
       </TitlePriceWrapper>
     </Container>
   );

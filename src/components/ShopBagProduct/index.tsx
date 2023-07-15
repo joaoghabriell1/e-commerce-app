@@ -41,6 +41,7 @@ const ShopBagProduct = ({
             ref={amountInputRef}
             type="number"
             min="1"
+            max="10"
             defaultValue={amount}
             id="amount"
           />
@@ -56,14 +57,19 @@ const Container = styled.li`
   background: var(--clr-white);
   max-width: 736px;
   border-radius: 10px;
+  overflow: hidden;
+  height: 210px;
+  box-shadow: 1px 1px 1rem hsla(255, 15%, 88%, 1);
 `;
 
 const ProductImg = styled.img`
   width: 250px;
-  height: 210px;
+  height: 100%;
+  object-fit: cover;
 `;
 
 const InfoContainer = styled.div`
+  flex: 1;
   padding: 1.6rem 2rem 2.4rem 3.1rem;
   display: grid;
   align-content: space-between;
@@ -79,6 +85,7 @@ const ProductTitle = styled.h3`
 `;
 
 const Description = styled.p`
+  padding-right: 3rem;
   font-size: 1.3rem;
   margin-top: 1.2rem;
 `;

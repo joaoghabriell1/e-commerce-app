@@ -3,6 +3,8 @@ import { cartItem } from "../../types/cartItem";
 import { useEffect } from "react";
 import { useAppDispatch } from "../../hooks/redux-hooks";
 import { setTotal } from "../../store/cart-slice";
+import amountOfProducts from "../../utils/numberOfProducts";
+
 interface Props {
   cartIsEmpty: boolean;
   cartItems: cartItem[];
@@ -10,16 +12,14 @@ interface Props {
 }
 const ShopBagHeading = ({ cartIsEmpty, cartItems, cartTotal }: Props) => {
   const dispatch = useAppDispatch();
-  const numberOfProducts = cartItems.reduce((total, item) => {
-    return (total += item.amount);
-  }, 0);
+  const numberOfProducts = amountOfProducts(cartItems);
 
   useEffect(() => {
     dispatch(setTotal(cartItems));
   }, [cartItems]);
 
   if (cartIsEmpty) {
-    return <p>Você ainda não adicionou itens no seu carrinho!</p>;
+    return <p>Your cart is empty!</p>;
   }
 
   return (

@@ -53,13 +53,16 @@ const FilterNav = ({ filters, categoryFilter }: Props) => {
 
 const FilterList = styled.ul`
   display: flex;
-  gap: 4rem;
+  flex-wrap: wrap;
+  column-gap: 4rem;
+  row-gap: 1rem;
 `;
 
 const FilterItem = styled.li<FilterItemProps>`
   text-transform: uppercase;
   font-weight: ${(p: FilterItemProps) => (p.currentfilter ? "bold" : "500")};
-
+  border-bottom: ${(p: FilterItemProps) =>
+    p.currentfilter ? "4px solid hsla(16, 100%, 76%, 1)" : "none"};
   &:hover {
     cursor: pointer;
     opacity: 0.8;
