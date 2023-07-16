@@ -15,32 +15,36 @@ import { Link } from "react-router-dom";
 type FormValues = {
   email: string;
   password: string;
+  confirmPassword: string;
 };
 
-const LoginForm = () => {
+const RegisterForm = () => {
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitSuccessful },
+    watch,
   } = useForm<FormValues>();
 
   const navigate = useNavigate();
   const authContext = useContext(AuthContext) as AuthType;
-  const { logIn } = authContext;
+  const { createUser } = authContext;
 
   const onSubmit = handleSubmit(async (data) => {
     const { email, password } = data;
     try {
-      await logIn(email, password);
+      await createUser(email, password);
       navigate("/");
     } catch (e) {
       console.log(e);
     }
   });
 
+  const watchPassword = watch("password");
+
   return (
     <Form onSubmit={onSubmit}>
-      <h3>Log-In</h3>
+      <h3>Create Account</h3>
       <InputContainer invalid={errors.hasOwnProperty("email")}>
         <label htmlFor="e-mail">E-mail</label>
         <input
@@ -73,18 +77,37 @@ const LoginForm = () => {
           {errors?.password && <Error>{errors.password.message}</Error>}
         </div>
       </InputContainer>
+      <InputContainer invalid={errors.hasOwnProperty("confirmPassword")}>
+        <label htmlFor="confirmPassword">Confirm Password</label>
+        <input
+          placeholder="Confirm password"
+          type="password"
+          {...register("confirmPassword", {
+            required: true,
+            validate: (val) => {
+              if (watchPassword !== val) {
+                return "Your passwords do not match.";
+              }
+            },
+          })}
+        />
+        <div>
+          {errors?.confirmPassword && (
+            <Error>{errors.confirmPassword?.message}</Error>
+          )}
+        </div>
+      </InputContainer>
 
-      <ActionButton>login</ActionButton>
+      <ActionButton>Create Account</ActionButton>
       <Message>
         Don't have an account?{" "}
         <Link to="/">
           <span>
-            <Link to="/auth?mode=signup">Register</Link>
+            <Link to="/auth?mode=login">LogIn</Link>
           </span>
         </Link>
       </Message>
     </Form>
   );
 };
-
-export default LoginForm;
+export default RegisterForm;

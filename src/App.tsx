@@ -23,7 +23,7 @@ function App() {
           loader: ProductPageLoader,
         },
         {
-          path: "/Auth",
+          path: "/auth",
           element: <Auth />,
         },
       ],

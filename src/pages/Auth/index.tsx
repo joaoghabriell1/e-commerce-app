@@ -1,10 +1,16 @@
+import RegisterForm from "./RegisterForm";
 import LoginForm from "./LoginForm";
 import styled from "styled-components";
+import { useSearchParams } from "react-router-dom";
 
 const Auth = () => {
+  const [searchParams] = useSearchParams();
+  let isLogin = searchParams.get("mode");
+  if (!isLogin) isLogin = "login";
+
   return (
     <Container>
-      <LoginForm />
+      {isLogin === "login" ? <LoginForm /> : <RegisterForm />}
     </Container>
   );
 };
