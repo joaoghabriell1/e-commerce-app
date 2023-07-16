@@ -23,7 +23,7 @@ export const fetchCartData = () => {
 };
 
 export const sendCartData = (cart: cartItem[]) => {
-  return async (dispatch: any) => {
+  return async () => {
     const putData = async () => {
       const response = await fetch(
         "https://ecommerce-api-d47f1-default-rtdb.firebaseio.com/cart.json",

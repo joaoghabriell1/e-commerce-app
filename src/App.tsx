@@ -3,7 +3,9 @@ import RootLayout from "./layout/RootLayout";
 import Home from "./pages/Home";
 import ShopBag from "./pages/ShopBag";
 import ProductPage from "./pages/ProductPage/Index";
+import Auth from "./pages/Auth";
 import { Loader as ProductPageLoader } from "./pages/ProductPage/Index";
+
 function App() {
   const router = createBrowserRouter([
     {
@@ -19,6 +21,10 @@ function App() {
           path: "product/:productId",
           element: <ProductPage />,
           loader: ProductPageLoader,
+        },
+        {
+          path: "/Auth",
+          element: <Auth />,
         },
       ],
     },
