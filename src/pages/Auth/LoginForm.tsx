@@ -1,44 +1,82 @@
+import { useForm, Resolver } from "react-hook-form";
 import styled from "styled-components";
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../../store/auth-context";
 import { AuthType } from "../../store/auth-context";
 
+type FormValues = {
+  email: string;
+  password: string;
+};
+
+/* const resolver: Resolver<FormValues> = async (values) => {
+  return {
+    values: values.email ? values : {},
+    errors: !values.email
+      ? {
+          email: {
+            type: "required",
+            message: "Email is required.",
+          },
+        }
+      : {},
+  };
+}; */
+
 const LoginForm = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitSuccessful },
+    watch,
+    reset,
+  } = useForm<FormValues>();
+
   const navigate = useNavigate();
   const authContext = useContext(AuthContext) as AuthType;
-  const { logIn, user } = authContext;
+  const { logIn } = authContext;
 
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      await logIn(email, password);
+      await logIn("", "");
       navigate("/");
-    } catch (e) {}
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (
-    <Form onSubmit={submitHandler}>
+    <Form onSubmit={handleSubmit((data) => {})}>
       <h3>Log-In</h3>
       <InputContainer>
-        <label htmlFor="">E-mail</label>
+        <label htmlFor="e-mail">E-mail</label>
         <input
-          onChange={(e) => setEmail(e.target.value)}
-          value={email}
-          type="email"
-          id="email"
+          id="e-mail"
+          type="text"
+          {...register("email", {
+            required: "ads required",
+            minLength: {
+              value: 5,
+              message: "teste",
+            },
+          })}
         />
+        <div>{errors?.email && <p>{errors.email.message}</p>}</div>
       </InputContainer>
       <InputContainer>
-        <label htmlFor="">Password</label>
+        <label htmlFor="password">Password</label>
         <input
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          id="password"
           type="password"
+          {...register("password", {
+            required: "erro required",
+          })}
         />
+        <div>{errors?.password && <p>{errors.password.message}</p>}</div>
       </InputContainer>
+
       <ActionButton>login</ActionButton>
       <div>Don't have an account? Register</div>
     </Form>
@@ -63,11 +101,11 @@ const InputContainer = styled.div`
   }
 `;
 
-const ActionButton = styled.button`
+export const ActionButton = styled.button`
   margin-block: 3rem;
 `;
 
-const Form = styled.form`
+export const Form = styled.form`
   min-width: 400px;
   display: grid;
   align-items: center;
