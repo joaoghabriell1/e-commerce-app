@@ -1,28 +1,21 @@
-import { useForm, Resolver } from "react-hook-form";
-import styled from "styled-components";
+import {
+  Form,
+  InputContainer,
+  ActionButton,
+  Error,
+  Message,
+} from "./styles.ts";
+import { useForm } from "react-hook-form";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../../store/auth-context";
 import { AuthType } from "../../store/auth-context";
+import { Link } from "react-router-dom";
 
 type FormValues = {
   email: string;
   password: string;
 };
-
-/* const resolver: Resolver<FormValues> = async (values) => {
-  return {
-    values: values.email ? values : {},
-    errors: !values.email
-      ? {
-          email: {
-            type: "required",
-            message: "Email is required.",
-          },
-        }
-      : {},
-  };
-}; */
 
 const LoginForm = () => {
   const {
@@ -37,87 +30,61 @@ const LoginForm = () => {
   const authContext = useContext(AuthContext) as AuthType;
   const { logIn } = authContext;
 
-  const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const onSubmit = handleSubmit(async (data) => {
+    const { email, password } = data;
     try {
-      await logIn("", "");
+      await logIn(email, password);
       navigate("/");
     } catch (e) {
       console.log(e);
     }
-  };
+  });
 
   return (
-    <Form onSubmit={handleSubmit((data) => {})}>
+    <Form onSubmit={onSubmit}>
       <h3>Log-In</h3>
-      <InputContainer>
+      <InputContainer invalid={errors.hasOwnProperty("email")}>
         <label htmlFor="e-mail">E-mail</label>
         <input
           id="e-mail"
           type="text"
           {...register("email", {
-            required: "ads required",
-            minLength: {
-              value: 5,
-              message: "teste",
+            required: "E-mail required",
+            pattern: {
+              value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
+              message: "Invalid email address",
             },
           })}
         />
-        <div>{errors?.email && <p>{errors.email.message}</p>}</div>
+        <div>{errors?.email && <Error>{errors.email.message}</Error>}</div>
       </InputContainer>
-      <InputContainer>
+      <InputContainer invalid={errors.hasOwnProperty("password")}>
         <label htmlFor="password">Password</label>
         <input
           id="password"
           type="password"
           {...register("password", {
-            required: "erro required",
+            required: "Password required",
+            minLength: {
+              value: 6,
+              message: "Your password has to be at least 6 characters",
+            },
           })}
         />
-        <div>{errors?.password && <p>{errors.password.message}</p>}</div>
+        <div>
+          {errors?.password && <Error>{errors.password.message}</Error>}
+        </div>
       </InputContainer>
 
       <ActionButton>login</ActionButton>
-      <div>Don't have an account? Register</div>
+      <Message>
+        Don't have an account?{" "}
+        <Link to="/">
+          <span>Register</span>
+        </Link>
+      </Message>
     </Form>
   );
 };
-
-const InputContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  label {
-    font-size: 14px;
-    margin-bottom: 4px;
-    font-weight: bold;
-    color: var(--clr-gray-100);
-  }
-  input {
-    background: var(--clr-gray-200);
-    border: 0;
-    border-radius: 5px;
-    padding: 1rem;
-  }
-`;
-
-export const ActionButton = styled.button`
-  margin-block: 3rem;
-`;
-
-export const Form = styled.form`
-  min-width: 400px;
-  display: grid;
-  align-items: center;
-  background: var(--clr-white);
-  border-radius: 1rem;
-  padding: 1.5rem 1.5rem;
-  gap: 1rem;
-  h3 {
-    text-align: start;
-    font-size: W 2.5rem;
-    margin-bottom: 3rem;
-  }
-`;
 
 export default LoginForm;
