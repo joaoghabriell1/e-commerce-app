@@ -28,6 +28,7 @@ const Container = styled.div`
   overflow: hidden;
   display: grid;
   position: relative;
+  max-width: 400px;
 `;
 
 const TitlePriceWrapper = styled.div`

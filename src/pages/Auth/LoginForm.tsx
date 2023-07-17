@@ -50,6 +50,7 @@ const LoginForm = () => {
         <label htmlFor="e-mail">E-mail</label>
         <input
           id="e-mail"
+          placeholder="xxxxx@xxx.xxx"
           type="text"
           {...register("email", {
             required: "E-mail required",
@@ -66,6 +67,7 @@ const LoginForm = () => {
         <input
           id="password"
           type="password"
+          placeholder="password"
           {...register("password", {
             required: "Password required",
             minLength: {

@@ -1,9 +1,25 @@
 import styled from "styled-components";
+import AuthContext from "../../store/auth-context";
+import { useContext, useState } from "react";
+import { AuthType } from "../../store/auth-context";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 interface Props {
   cartTotal: number;
 }
+
 const OrderSum = ({ cartTotal }: Props) => {
-  console.log(cartTotal);
+  const [error, setError] = useState<boolean>(false);
+  const navigate = useNavigate();
+  const authContext = useContext(AuthContext) as AuthType;
+  const { user } = authContext;
+  const handleClick = () => {
+    if (!user) {
+      setError(true);
+      return;
+    }
+    return navigate("/checkout");
+  };
   return (
     <Aside>
       <div>
@@ -24,8 +40,15 @@ const OrderSum = ({ cartTotal }: Props) => {
           <Total>Total</Total>
           <Total>R$ {cartTotal + 40},00</Total>
         </FlexContainer>
+        <ErrorMessage>
+          {error ? (
+            <p>
+              To checkout you need to <Link to="/auth">LogIn</Link>
+            </p>
+          ) : null}
+        </ErrorMessage>
         <div>
-          <Button>finalizar a compra</Button>
+          <Button onClick={handleClick}>finalizar a compra</Button>
         </div>
       </div>
     </Aside>
@@ -45,6 +68,16 @@ const Aside = styled.aside`
 const FlexContainer = styled.div`
   display: flex;
   justify-content: space-between;
+`;
+
+const ErrorMessage = styled.div`
+  font-size: 1.4rem;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  a {
+    color: red;
+  }
 `;
 
 const Wrapper = styled.div`
