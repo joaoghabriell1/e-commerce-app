@@ -11,7 +11,7 @@ interface Props {
 }
 
 interface FilterItemProps {
-  currentfilter: boolean;
+  currentfilter: number;
 }
 
 const FilterNav = ({ filters, categoryFilter }: Props) => {
@@ -25,7 +25,7 @@ const FilterNav = ({ filters, categoryFilter }: Props) => {
     <nav>
       <FilterList>
         <FilterItem
-          currentfilter={categoryFilter === ""}
+          currentfilter={categoryFilter === "" ? 1 : 0}
           onClick={() => {
             filterHandler("");
           }}
@@ -40,7 +40,7 @@ const FilterNav = ({ filters, categoryFilter }: Props) => {
               }}
               value={filter}
               key={index}
-              currentfilter={categoryFilter === filter}
+              currentfilter={categoryFilter === filter ? 1 : 0}
             >
               {filter}
             </FilterItem>

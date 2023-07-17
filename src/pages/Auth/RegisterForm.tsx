@@ -13,6 +13,7 @@ import { AuthType } from "../../store/auth-context";
 import { Link } from "react-router-dom";
 
 type FormValues = {
+  name: string;
   email: string;
   password: string;
   confirmPassword: string;
@@ -22,7 +23,7 @@ const RegisterForm = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitSuccessful },
+    formState: { errors },
     watch,
   } = useForm<FormValues>();
 
@@ -34,7 +35,7 @@ const RegisterForm = () => {
     const { email, password } = data;
     try {
       await createUser(email, password);
-      navigate("/");
+      navigate("/checkout");
     } catch (e) {
       console.log(e);
     }
@@ -45,11 +46,24 @@ const RegisterForm = () => {
   return (
     <Form onSubmit={onSubmit}>
       <h3>Create Account</h3>
-      <InputContainer invalid={errors.hasOwnProperty("email")}>
+      <InputContainer invalid={errors.hasOwnProperty("email") ? 1 : 0}>
+        <label htmlFor="name">Name</label>
+        <input
+          id="name"
+          type="text"
+          placeholder="Name"
+          {...register("name", {
+            required: "Name required",
+          })}
+        />
+        <div>{errors?.email && <Error>{errors.email.message}</Error>}</div>
+      </InputContainer>
+      <InputContainer invalid={errors.hasOwnProperty("email") ? 1 : 0}>
         <label htmlFor="e-mail">E-mail</label>
         <input
           id="e-mail"
           type="text"
+          placeholder="xxxxx@xxx.xxx"
           {...register("email", {
             required: "E-mail required",
             pattern: {
@@ -60,11 +74,12 @@ const RegisterForm = () => {
         />
         <div>{errors?.email && <Error>{errors.email.message}</Error>}</div>
       </InputContainer>
-      <InputContainer invalid={errors.hasOwnProperty("password")}>
+      <InputContainer invalid={errors.hasOwnProperty("email") ? 1 : 0}>
         <label htmlFor="password">Password</label>
         <input
           id="password"
           type="password"
+          placeholder="Password"
           {...register("password", {
             required: "Password required",
             minLength: {
@@ -77,7 +92,7 @@ const RegisterForm = () => {
           {errors?.password && <Error>{errors.password.message}</Error>}
         </div>
       </InputContainer>
-      <InputContainer invalid={errors.hasOwnProperty("confirmPassword")}>
+      <InputContainer invalid={errors.hasOwnProperty("email") ? 1 : 0}>
         <label htmlFor="confirmPassword">Confirm Password</label>
         <input
           placeholder="Confirm password"
@@ -100,11 +115,9 @@ const RegisterForm = () => {
 
       <ActionButton>Create Account</ActionButton>
       <Message>
-        Don't have an account?{" "}
-        <Link to="/">
-          <span>
-            <Link to="/auth?mode=login">LogIn</Link>
-          </span>
+        Already have an account?{" "}
+        <Link to="/auth?mode=login">
+          <span>LogIn</span>
         </Link>
       </Message>
     </Form>

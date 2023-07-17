@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 interface InputProps {
-  invalid: boolean;
+  invalid: number;
 }
 
 export const Message = styled.div`

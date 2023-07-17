@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import ShopBag from "./pages/ShopBag";
 import ProductPage from "./pages/ProductPage/Index";
 import Auth from "./pages/Auth";
+import Checkout from "./pages/Checkout";
 import { Loader as ProductPageLoader } from "./pages/ProductPage/Index";
 
 function App() {
@@ -22,11 +23,12 @@ function App() {
           element: <ProductPage />,
           loader: ProductPageLoader,
         },
-        {
-          path: "/auth",
-          element: <Auth />,
-        },
+        { path: "checkout", element: <Checkout /> },
       ],
+    },
+    {
+      path: "/auth",
+      element: <Auth />,
     },
   ]);
   return (

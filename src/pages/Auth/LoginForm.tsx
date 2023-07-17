@@ -6,7 +6,7 @@ import {
   Message,
 } from "./styles.ts";
 import { useForm } from "react-hook-form";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../../store/auth-context";
 import { AuthType } from "../../store/auth-context";
@@ -18,10 +18,11 @@ type FormValues = {
 };
 
 const LoginForm = () => {
+  const [loading, setLoading] = useState<boolean>(false);
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitSuccessful },
+    formState: { errors },
   } = useForm<FormValues>();
 
   const navigate = useNavigate();
@@ -31,17 +32,21 @@ const LoginForm = () => {
   const onSubmit = handleSubmit(async (data) => {
     const { email, password } = data;
     try {
+      setLoading(true);
       await logIn(email, password);
-      navigate("/");
+      navigate("/checkout");
     } catch (e) {
       console.log(e);
+    } finally {
+      setLoading(false);
+      console.log("cu");
     }
   });
 
   return (
     <Form onSubmit={onSubmit}>
       <h3>Log-In</h3>
-      <InputContainer invalid={errors.hasOwnProperty("email")}>
+      <InputContainer invalid={errors.hasOwnProperty("email") ? 1 : 0}>
         <label htmlFor="e-mail">E-mail</label>
         <input
           id="e-mail"
@@ -56,7 +61,7 @@ const LoginForm = () => {
         />
         <div>{errors?.email && <Error>{errors.email.message}</Error>}</div>
       </InputContainer>
-      <InputContainer invalid={errors.hasOwnProperty("password")}>
+      <InputContainer invalid={errors.hasOwnProperty("email") ? 1 : 0}>
         <label htmlFor="password">Password</label>
         <input
           id="password"
@@ -74,14 +79,12 @@ const LoginForm = () => {
         </div>
       </InputContainer>
 
-      <ActionButton>login</ActionButton>
+      <ActionButton>{loading ? <p>Connecting...</p> : "login"}</ActionButton>
       <Message>
         Don't have an account?{" "}
-        <Link to="/">
-          <span>
-            <Link to="/auth?mode=signup">Register</Link>
-          </span>
-        </Link>
+        <span>
+          <Link to="/auth?mode=signup">Register</Link>
+        </span>
       </Message>
     </Form>
   );
