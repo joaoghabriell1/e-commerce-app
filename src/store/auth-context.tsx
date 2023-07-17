@@ -40,7 +40,12 @@ export const AuthContextProvider = ({ children }: Props) => {
   }, [onAuthStateChanged]);
 
   const logIn = (email: string, password: string) => {
-    return signInWithEmailAndPassword(auth, email, password);
+    return signInWithEmailAndPassword(auth, email, password).catch((error) => {
+      setErrors({
+        code: error.code,
+        message: error.message,
+      });
+    });
   };
 
   const cleanServerErrors = () => {

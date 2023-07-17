@@ -4,6 +4,7 @@ import {
   ActionButton,
   Error,
   Message,
+  ServerErrorMessageContainer,
 } from "./styles.ts";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -12,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 import AuthContext from "../../store/auth-context";
 import { AuthType } from "../../store/auth-context";
 import { Link } from "react-router-dom";
+import ServerErrorMessages from "./ServerErrors.ts";
 
 type FormValues = {
   name: string;
@@ -54,7 +56,11 @@ const RegisterForm = () => {
   return (
     <Form onSubmit={onSubmit}>
       <h3>Create Account</h3>
-      {serverErrors && <p>{serverErrors.message}</p>}
+      {serverErrors ? (
+        <ServerErrorMessageContainer>
+          {(ServerErrorMessages as Record<string, string>)[serverErrors.code]}
+        </ServerErrorMessageContainer>
+      ) : null}
       <InputContainer invalid={errors.hasOwnProperty("name") ? 1 : 0}>
         <label htmlFor="name">Name</label>
         <input

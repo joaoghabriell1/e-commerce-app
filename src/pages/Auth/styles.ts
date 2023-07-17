@@ -13,6 +13,11 @@ export const Message = styled.div`
   }
 `;
 
+export const ServerErrorMessageContainer = styled.p`
+  color: red;
+  font-weight: bold;
+`;
+
 export const InputContainer = styled.div<InputProps>`
   display: flex;
   flex-direction: column;

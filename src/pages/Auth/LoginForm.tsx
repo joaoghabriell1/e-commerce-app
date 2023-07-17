@@ -4,6 +4,7 @@ import {
   ActionButton,
   Error,
   Message,
+  ServerErrorMessageContainer,
 } from "./styles.ts";
 import { useForm } from "react-hook-form";
 import { useContext, useState } from "react";
@@ -11,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 import AuthContext from "../../store/auth-context";
 import { AuthType } from "../../store/auth-context";
 import { Link } from "react-router-dom";
+import ServerErrorMessages from "./ServerErrors.ts";
 
 type FormValues = {
   email: string;
@@ -27,25 +29,30 @@ const LoginForm = () => {
 
   const navigate = useNavigate();
   const authContext = useContext(AuthContext) as AuthType;
-  const { logIn } = authContext;
+  const { logIn, serverErrors, cleanServerErrors } = authContext;
 
   const onSubmit = handleSubmit(async (data) => {
     const { email, password } = data;
+    cleanServerErrors();
     try {
       setLoading(true);
-      await logIn(email, password);
+      const login = await logIn(email, password);
       navigate("/checkout");
     } catch (e) {
       console.log(e);
     } finally {
       setLoading(false);
-      console.log("cu");
     }
   });
 
   return (
     <Form onSubmit={onSubmit}>
       <h3>Log-In</h3>
+      {serverErrors ? (
+        <ServerErrorMessageContainer>
+          {(ServerErrorMessages as Record<string, string>)[serverErrors.code]}
+        </ServerErrorMessageContainer>
+      ) : null}
       <InputContainer invalid={errors.hasOwnProperty("email") ? 1 : 0}>
         <label htmlFor="e-mail">E-mail</label>
         <input
