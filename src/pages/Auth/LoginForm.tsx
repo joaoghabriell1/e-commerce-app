@@ -36,7 +36,7 @@ const LoginForm = () => {
     cleanServerErrors();
     try {
       setLoading(true);
-      const login = await logIn(email, password);
+      await logIn(email, password);
       navigate("/checkout");
     } catch (e) {
       console.log(e);
@@ -92,7 +92,14 @@ const LoginForm = () => {
       <Message>
         Don't have an account?{" "}
         <span>
-          <Link to="/auth?mode=signup">Register</Link>
+          <Link
+            onClick={() => {
+              cleanServerErrors();
+            }}
+            to="/auth?mode=signup"
+          >
+            Register
+          </Link>
         </span>
       </Message>
     </Form>

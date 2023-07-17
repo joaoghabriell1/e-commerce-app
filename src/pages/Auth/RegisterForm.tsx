@@ -115,7 +115,7 @@ const RegisterForm = () => {
           placeholder="Confirm password"
           type="password"
           {...register("confirmPassword", {
-            required: true,
+            required: "You need to confirm your password.",
             validate: (val) => {
               if (watchPassword !== val) {
                 return "Your passwords do not match.";
@@ -135,7 +135,12 @@ const RegisterForm = () => {
       </ActionButton>
       <Message>
         Already have an account?{" "}
-        <Link to="/auth?mode=login">
+        <Link
+          onClick={() => {
+            cleanServerErrors();
+          }}
+          to="/auth?mode=login"
+        >
           <span>LogIn</span>
         </Link>
       </Message>

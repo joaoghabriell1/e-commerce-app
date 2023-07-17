@@ -16,6 +16,8 @@ export const Message = styled.div`
 export const ServerErrorMessageContainer = styled.p`
   color: red;
   font-weight: bold;
+  max-width: 40ch;
+  font-size: 1.4rem;
 `;
 
 export const InputContainer = styled.div<InputProps>`
