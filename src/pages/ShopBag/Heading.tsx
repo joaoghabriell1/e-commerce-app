@@ -1,8 +1,5 @@
 import styled from "styled-components";
 import { cartItem } from "../../types/cartItem";
-import { useEffect } from "react";
-import { useAppDispatch } from "../../hooks/redux-hooks";
-import { setTotal } from "../../store/cart-slice";
 import amountOfProducts from "../../utils/numberOfProducts";
 
 interface Props {
@@ -10,13 +7,9 @@ interface Props {
   cartItems: cartItem[];
   cartTotal: number;
 }
-const ShopBagHeading = ({ cartIsEmpty, cartItems, cartTotal }: Props) => {
-  const dispatch = useAppDispatch();
-  const numberOfProducts = amountOfProducts(cartItems);
 
-  useEffect(() => {
-    dispatch(setTotal(cartItems));
-  }, [cartItems]);
+const ShopBagHeading = ({ cartIsEmpty, cartItems, cartTotal }: Props) => {
+  const numberOfProducts = amountOfProducts(cartItems);
 
   if (cartIsEmpty) {
     return <p>Your cart is empty!</p>;

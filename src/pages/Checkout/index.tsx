@@ -33,7 +33,7 @@ const Checkout = () => {
           <CheckoutItemsList />
         </div>
         <SubmitButton onClick={() => formRef.current?.requestSubmit()}>
-          Submit
+          Finish you order
         </SubmitButton>
       </Wrapper>
     </MainContainer>

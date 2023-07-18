@@ -23,22 +23,22 @@ const OrderSum = ({ cartTotal }: Props) => {
   return (
     <Aside>
       <div>
-        <Title>resumo do pedido</Title>
+        <Title>Your Order</Title>
       </div>
       <div>
         <Wrapper>
           <FlexContainer>
-            <span>Subtotal de produtos</span>
-            <span>R$ {cartTotal},00</span>
+            <span>Products Total:</span>
+            <span>U$ {cartTotal},00</span>
           </FlexContainer>
           <FlexContainer>
-            <span>Entrega</span>
-            <span>R$ 40,00</span>
+            <span>Shipping</span>
+            <span>U$ 40,00</span>
           </FlexContainer>
         </Wrapper>
         <FlexContainer>
           <Total>Total</Total>
-          <Total>R$ {cartTotal + 40},00</Total>
+          <Total>U$ {cartTotal + 40},00</Total>
         </FlexContainer>
         <ErrorMessage>
           {error ? (
@@ -48,7 +48,7 @@ const OrderSum = ({ cartTotal }: Props) => {
           ) : null}
         </ErrorMessage>
         <div>
-          <Button onClick={handleClick}>finalizar a compra</Button>
+          <Button onClick={handleClick}>Proceed to Checkout</Button>
         </div>
       </div>
     </Aside>

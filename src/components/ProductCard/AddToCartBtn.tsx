@@ -24,7 +24,7 @@ const AddToCartBtn = ({ cartInfo }: Props) => {
   return (
     <BtnContainer onClick={clickHandler}>
       <CartImg src={shoppingBag} alt="cart-btn" />
-      <span>Adicionar ao carrinho</span>
+      <span>Add to Cart</span>
     </BtnContainer>
   );
 };

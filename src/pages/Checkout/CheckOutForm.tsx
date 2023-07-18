@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
-import { forwardRef } from "react";
+import { forwardRef, useState, FocusEvent } from "react";
+
 type FormValues = {
   zipCode: string;
   address: string;
@@ -12,11 +13,14 @@ type FormValues = {
 };
 
 const CheckOutForm = forwardRef<HTMLFormElement>((props, ref) => {
+  const [city, setCity] = useState<string>("");
+  const [state, setState] = useState<string>("");
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormValues>();
+  } = useForm<FormValues>({ mode: "onBlur" });
 
   const onSubmit = handleSubmit(() => {});
 
@@ -28,11 +32,31 @@ const CheckOutForm = forwardRef<HTMLFormElement>((props, ref) => {
           <label htmlFor="">Zip Code</label>
           <input
             type="text"
+            placeholder="ex: 99150-000"
+            maxLength={9}
             {...register("zipCode", {
               required: "Zip Code Required",
               pattern: {
                 value: /^[0-9]{5}-[0-9]{3}$/g,
                 message: "Plese use the requested format, ex: 12345-679",
+              },
+              validate: {
+                checkCep: async (fieldValue: string) => {
+                  const cleanCep = fieldValue.replace(/\D/, "");
+
+                  const response = await fetch(
+                    `https://viacep.com.br/ws/${cleanCep}/json/`
+                  );
+                  const data = await response.json();
+                  if (!data.hasOwnProperty("erro")) {
+                    setCity(data.localidade);
+                    setState(data.uf);
+                  } else {
+                    setCity("");
+                    setState("");
+                  }
+                  return !data.hasOwnProperty("erro") || "Invalid Zip Code";
+                },
               },
             })}
           />
@@ -41,6 +65,14 @@ const CheckOutForm = forwardRef<HTMLFormElement>((props, ref) => {
               <ErrorMessage>{errors.zipCode.message}</ErrorMessage>
             )}
           </div>
+        </InputContainer>
+        <InputContainer>
+          <label htmlFor="">State</label>
+          <input type="text" disabled={true} value={state} />
+        </InputContainer>
+        <InputContainer>
+          <label htmlFor="">City</label>
+          <input disabled={true} type="text" value={city} />
         </InputContainer>
         <InputContainer>
           <label htmlFor="streetAddres">Street Addresss</label>
@@ -103,10 +135,14 @@ const CheckOutForm = forwardRef<HTMLFormElement>((props, ref) => {
         <InputContainer>
           <label htmlFor="creditCardNumber">Credit Card</label>
           <input
-            type="number"
+            type="text"
             id="creditCardNumber"
             {...register("creditCardNumber", {
               required: "Credit Card Number Required",
+              pattern: {
+                value: /(\d{4}[-. ]?){4}|\d{4}[-. ]?\d{6}[-. ]?\d{5}/g,
+                message: "Format invalid.",
+              },
             })}
           />
           <div>

@@ -33,10 +33,10 @@ const ProductPage = () => {
               <span>{category}</span>
               <Title>{title}</Title>
               <div>
-                <Price>R$ {price},00</Price>
+                <Price>U$ {price},00</Price>
               </div>
               <Description>
-                <h3>descrição</h3>
+                <h3>Description</h3>
                 <p>{description}</p>
               </Description>
             </div>

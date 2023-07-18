@@ -6,6 +6,7 @@ import { setProducts } from "../store/products-slice";
 import useFetchProducts from "../hooks/useFetchProducts";
 import { fetchCartData } from "../store/cart-async";
 import { sendCartData } from "../store/cart-async";
+import { setTotal } from "../store/cart-slice";
 let isInitial = true;
 
 const RootLayout = () => {
@@ -16,6 +17,10 @@ const RootLayout = () => {
   useEffect(() => {
     dispatch(fetchCartData());
   }, []);
+
+  useEffect(() => {
+    dispatch(setTotal(cartItems));
+  }, [cartItems]);
 
   useEffect(() => {
     dispatch(setProducts(products));
