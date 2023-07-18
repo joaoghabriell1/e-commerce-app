@@ -23,6 +23,7 @@ const Header = () => {
             </Link>
             <AmountOfProducts>{amountOfProducts}</AmountOfProducts>
           </Cart>
+          <div>user</div>
         </HeaderContainer>
       </MainContainer>
     </HeaderTag>

@@ -1,16 +1,16 @@
-import { useAppSelector } from "../../hooks/redux-hooks";
 import AuthContext from "../../store/auth-context";
-import styled from "styled-components";
 import { MainContainer } from "../../globalSyles";
-import { useContext } from "react";
+import { useContext, useRef } from "react";
 import { AuthType } from "../../store/auth-context";
 import { Navigate } from "react-router-dom";
 import CheckOutForm from "./CheckOutForm";
+import CheckoutItemsList from "./CheckoutItemsList";
+import { Heading } from "./CheckOutForm";
 
 const Checkout = () => {
-  const cart = useAppSelector((state) => state.cart.items);
   const authContext = useContext(AuthContext) as AuthType;
   const { user, logOut } = authContext;
+  const formRef = useRef<HTMLFormElement>(null);
 
   if (!user) {
     return <Navigate to="/auth"></Navigate>;
@@ -23,40 +23,18 @@ const Checkout = () => {
   return (
     <div>
       <MainContainer>
-        {user.uid}
         <button onClick={handleLogout}>logout</button>
-        <CheckOutForm />
         <div>
-          <h3>Items</h3>
-          <ul>
-            {cart.map((item) => {
-              return (
-                <CheckoutItem key={item.id}>
-                  <div>
-                    <img src={item.thumbnail} alt="" />
-                  </div>
-                  <div>
-                    <h4>{item.title}</h4>
-                    <div>R${item.price},00</div>
-                    <div>
-                      <span>Quantity: </span> <span>{item.amount}</span>
-                    </div>
-                  </div>
-                </CheckoutItem>
-              );
-            })}
-          </ul>
+          <CheckOutForm ref={formRef} />
         </div>
+        <div>
+          <Heading>Items</Heading>
+          <CheckoutItemsList />
+        </div>
+        <button onClick={() => formRef.current?.requestSubmit()}>Submit</button>
       </MainContainer>
     </div>
   );
 };
-
-const CheckoutItem = styled.li`
-  display: flex;
-  img {
-    width: 225px;
-  }
-`;
 
 export default Checkout;
