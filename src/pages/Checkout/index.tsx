@@ -6,6 +6,7 @@ import { Navigate } from "react-router-dom";
 import CheckOutForm from "./CheckOutForm";
 import CheckoutItemsList from "./CheckoutItemsList";
 import { Heading } from "./CheckOutForm";
+import { styled } from "styled-components";
 
 const Checkout = () => {
   const authContext = useContext(AuthContext) as AuthType;
@@ -21,8 +22,8 @@ const Checkout = () => {
   };
 
   return (
-    <div>
-      <MainContainer>
+    <MainContainer>
+      <Wrapper>
         <button onClick={handleLogout}>logout</button>
         <div>
           <CheckOutForm ref={formRef} />
@@ -31,10 +32,34 @@ const Checkout = () => {
           <Heading>Items</Heading>
           <CheckoutItemsList />
         </div>
-        <button onClick={() => formRef.current?.requestSubmit()}>Submit</button>
-      </MainContainer>
-    </div>
+        <SubmitButton onClick={() => formRef.current?.requestSubmit()}>
+          Submit
+        </SubmitButton>
+      </Wrapper>
+    </MainContainer>
   );
 };
+
+const Wrapper = styled.div`
+  display: grid;
+  width: 500px;
+`;
+
+const SubmitButton = styled.button`
+  width: 200px;
+  border: 0;
+  background: lightgray;
+  padding: 1rem;
+  border-radius: 100vh;
+  font-family: inherit;
+  font-weight: bold;
+  width: 100%;
+  margin-block: 5rem;
+  border: 1px solid black;
+  &:hover {
+    cursor: pointer;
+    opacity: 0.8;
+  }
+`;
 
 export default Checkout;

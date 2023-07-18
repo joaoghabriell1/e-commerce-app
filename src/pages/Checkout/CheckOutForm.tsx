@@ -18,9 +18,7 @@ const CheckOutForm = forwardRef<HTMLFormElement>((props, ref) => {
     formState: { errors },
   } = useForm<FormValues>();
 
-  const onSubmit = handleSubmit(() => {
-    console.log("oi");
-  });
+  const onSubmit = handleSubmit(() => {});
 
   return (
     <form ref={ref} onSubmit={onSubmit}>
@@ -38,7 +36,11 @@ const CheckOutForm = forwardRef<HTMLFormElement>((props, ref) => {
               },
             })}
           />
-          <div>{errors?.zipCode && <p>{errors.zipCode.message}</p>}</div>
+          <div>
+            {errors?.zipCode && (
+              <ErrorMessage>{errors.zipCode.message}</ErrorMessage>
+            )}
+          </div>
         </InputContainer>
         <InputContainer>
           <label htmlFor="streetAddres">Street Addresss</label>
@@ -49,6 +51,11 @@ const CheckOutForm = forwardRef<HTMLFormElement>((props, ref) => {
               required: "Address Required",
             })}
           />
+          <div>
+            {errors?.address && (
+              <ErrorMessage>{errors.address.message}</ErrorMessage>
+            )}
+          </div>
         </InputContainer>
         <InputContainer>
           <label htmlFor="houseNumber">House Number</label>
@@ -59,6 +66,11 @@ const CheckOutForm = forwardRef<HTMLFormElement>((props, ref) => {
             {...register("houseNumber", { required: "House Number Required" })}
           />
         </InputContainer>
+        <div>
+          {errors?.houseNumber && (
+            <ErrorMessage>{errors.houseNumber.message}</ErrorMessage>
+          )}
+        </div>
       </Fieldset>
       <Fieldset>
         <Heading>Payment</Heading>
@@ -69,6 +81,11 @@ const CheckOutForm = forwardRef<HTMLFormElement>((props, ref) => {
             id="nameOnCard"
             {...register("nameOnCard", { required: "Name Required" })}
           />
+          <div>
+            {errors?.nameOnCard && (
+              <ErrorMessage>{errors.nameOnCard.message}</ErrorMessage>
+            )}
+          </div>
         </InputContainer>
         <InputContainer>
           <label htmlFor="expDate">Expiration Date</label>
@@ -77,6 +94,11 @@ const CheckOutForm = forwardRef<HTMLFormElement>((props, ref) => {
             id="expDate"
             {...register("expDate", { required: "Expiration Date Required" })}
           />
+          <div>
+            {errors?.expDate && (
+              <ErrorMessage>{errors.expDate.message}</ErrorMessage>
+            )}
+          </div>
         </InputContainer>
         <InputContainer>
           <label htmlFor="creditCardNumber">Credit Card</label>
@@ -87,6 +109,11 @@ const CheckOutForm = forwardRef<HTMLFormElement>((props, ref) => {
               required: "Credit Card Number Required",
             })}
           />
+          <div>
+            {errors?.creditCardNumber && (
+              <ErrorMessage>{errors.creditCardNumber.message}</ErrorMessage>
+            )}
+          </div>
         </InputContainer>
         <InputContainer>
           <label htmlFor="securityCode">Security Code</label>
@@ -97,8 +124,12 @@ const CheckOutForm = forwardRef<HTMLFormElement>((props, ref) => {
               required: "Security Code Number Required",
             })}
           />
+          <div>
+            {errors?.securityCode && (
+              <ErrorMessage>{errors.securityCode.message}</ErrorMessage>
+            )}
+          </div>
         </InputContainer>
-        <button>click </button>
       </Fieldset>
     </form>
   );
@@ -130,9 +161,8 @@ const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
   max-width: 500px;
-
   input {
-    padding: 0.4rem;
+    padding: 0.6rem;
   }
 
   label {
@@ -140,5 +170,11 @@ const InputContainer = styled.div`
     font-weight: bold;
     margin-bottom: 0.4rem;
   }
+`;
+
+const ErrorMessage = styled.p`
+  font-size: 1.4rem;
+  color: red;
+  font-weight: bold;
 `;
 export default CheckOutForm;
