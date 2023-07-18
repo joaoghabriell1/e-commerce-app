@@ -13,6 +13,7 @@ import AuthContext from "../../store/auth-context";
 import { AuthType } from "../../store/auth-context";
 import { Link } from "react-router-dom";
 import ServerErrorMessages from "./ServerErrors.ts";
+import { useLocation } from "react-router-dom";
 
 type FormValues = {
   email: string;
@@ -27,10 +28,12 @@ const LoginForm = () => {
     formState: { errors },
   } = useForm<FormValues>();
 
+  const location = useLocation();
   const navigate = useNavigate();
   const authContext = useContext(AuthContext) as AuthType;
   const { logIn, serverErrors, cleanServerErrors } = authContext;
 
+  console.log(location);
   const onSubmit = handleSubmit(async (data) => {
     const { email, password } = data;
     cleanServerErrors();

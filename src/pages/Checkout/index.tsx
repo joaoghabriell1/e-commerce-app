@@ -17,14 +17,9 @@ const Checkout = () => {
     return <Navigate to="/auth"></Navigate>;
   }
 
-  const handleLogout = () => {
-    logOut();
-  };
-
   return (
     <MainContainer>
       <Wrapper>
-        <button onClick={handleLogout}>logout</button>
         <div>
           <CheckOutForm ref={formRef} />
         </div>

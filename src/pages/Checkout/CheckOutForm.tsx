@@ -75,7 +75,7 @@ const CheckOutForm = forwardRef<HTMLFormElement>((props, ref) => {
           <input disabled={true} type="text" value={city} />
         </InputContainer>
         <InputContainer>
-          <label htmlFor="streetAddres">Street Addresss</label>
+          <label htmlFor="t streetAddres">Street Addresss</label>
           <input
             type="text"
             id="streetAddres"

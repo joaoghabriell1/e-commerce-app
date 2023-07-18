@@ -43,7 +43,10 @@ const OrderSum = ({ cartTotal }: Props) => {
         <ErrorMessage>
           {error ? (
             <p>
-              To checkout you need to <Link to="/auth">LogIn</Link>
+              To checkout you need to{" "}
+              <Link to="/auth" state="shop-bag">
+                LogIn
+              </Link>
             </p>
           ) : null}
         </ErrorMessage>

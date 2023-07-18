@@ -5,6 +5,7 @@ import styled from "styled-components";
 import SearchBar from "../SearchBar";
 import cart from "../../assets/shopping-bag.svg";
 import productAmount from "../../utils/numberOfProducts";
+import UserCard from "../UserCard";
 
 const Header = () => {
   const cartItems = useAppSelector((state) => state.cart.items);
@@ -23,7 +24,7 @@ const Header = () => {
             </Link>
             <AmountOfProducts>{amountOfProducts}</AmountOfProducts>
           </Cart>
-          <div>user</div>
+          <UserCard />
         </HeaderContainer>
       </MainContainer>
     </HeaderTag>
