@@ -57,6 +57,9 @@ const cartStore = createSlice({
         return item;
       });
     },
+    cleanCart: (state) => {
+      state.items = [];
+    },
   },
 });
 
@@ -65,6 +68,7 @@ export const {
   addProduct,
   setTotal,
   removeItem,
+  cleanCart,
   changeAmount,
 } = cartStore.actions;
 export default cartStore.reducer;

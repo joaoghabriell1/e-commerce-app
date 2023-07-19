@@ -59,6 +59,10 @@ const Container = styled.div`
   img {
     width: 24px;
   }
+
+  @media (max-width: 650px) {
+    display: none;
+  }
 `;
 
 const SearchButton = styled.button`

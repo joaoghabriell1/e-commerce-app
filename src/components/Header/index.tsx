@@ -40,12 +40,12 @@ const AmountOfProducts = styled.div`
   align-items: center;
   position: absolute;
   font-size: 1rem;
-  background: red;
   color: var(--clr-white);
   border-radius: 50%;
   height: 17px;
   top: 1.5rem;
   right: -1rem;
+  background: red;
 `;
 
 const HeaderContainer = styled.div`

@@ -34,6 +34,9 @@ const Section = styled.section`
   display: flex;
   gap: 3.2rem;
   margin-top: 2.5rem;
+  @media (max-width: 1050px) {
+    flex-direction: column;
+  }
 `;
 
 export default ShopBag;

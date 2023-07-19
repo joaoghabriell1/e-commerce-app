@@ -60,12 +60,18 @@ const Container = styled.li`
   overflow: hidden;
   height: 210px;
   box-shadow: 1px 1px 1rem hsla(255, 15%, 88%, 1);
+  @media (max-width: 400px) {
+    height: 200px;
+  }
 `;
 
 const ProductImg = styled.img`
   width: 250px;
   height: 100%;
   object-fit: cover;
+  @media (max-width: 400px) {
+    width: 100px;
+  }
 `;
 
 const InfoContainer = styled.div`

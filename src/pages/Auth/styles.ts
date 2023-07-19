@@ -67,6 +67,11 @@ export const Form = styled.form`
     font-size: W 2.5rem;
     margin-bottom: 3rem;
   }
+
+  @media (max-width: 430px) {
+    min-width: 200px;
+    width: 320px;
+  }
 `;
 
 export const Error = styled.p`

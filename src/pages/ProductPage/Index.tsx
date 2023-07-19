@@ -54,6 +54,9 @@ const ButtonContainer = styled.div`
 
 const SectionWrapper = styled.div`
   display: flex;
+  @media (max-width: 700px) {
+    flex-direction: column;
+  }
 `;
 
 const ProductContainer = styled.div`
@@ -63,6 +66,9 @@ const ProductContainer = styled.div`
     height: 100%;
     object-fit: cover;
   }
+  @media (max-width: 700px) {
+    height: 300px;
+  }
 `;
 
 const ProductInfo = styled.div`
@@ -71,6 +77,9 @@ const ProductInfo = styled.div`
   padding-left: 3.2rem;
   display: grid;
   grid-template-rows: 1fr auto;
+  @media (max-width: 700px) {
+    padding-left: 0;
+  }
 `;
 
 const Title = styled.h2`

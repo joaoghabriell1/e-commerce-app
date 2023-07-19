@@ -1,6 +1,13 @@
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
-import { forwardRef, useState, FocusEvent } from "react";
+import { useNavigate } from "react-router-dom";
+import { forwardRef, useState } from "react";
+import { cleanCart } from "../../store/cart-slice";
+import { useAppDispatch } from "../../hooks/redux-hooks";
+
+type Props = {
+  setSubmited: React.Dispatch<React.SetStateAction<boolean>>;
+};
 
 type FormValues = {
   zipCode: string;
@@ -12,9 +19,10 @@ type FormValues = {
   securityCode: number;
 };
 
-const CheckOutForm = forwardRef<HTMLFormElement>((props, ref) => {
+const CheckOutForm = forwardRef<HTMLFormElement, Props>((props, ref) => {
   const [city, setCity] = useState<string>("");
   const [state, setState] = useState<string>("");
+  const dispatch = useAppDispatch();
 
   const {
     register,
@@ -22,10 +30,14 @@ const CheckOutForm = forwardRef<HTMLFormElement>((props, ref) => {
     formState: { errors },
   } = useForm<FormValues>({ mode: "onBlur" });
 
-  const onSubmit = handleSubmit(() => {});
+  const onSubmit = handleSubmit(() => {
+    props.setSubmited(true);
+    window.scrollTo(0, 0);
+    dispatch(cleanCart());
+  });
 
   return (
-    <form ref={ref} onSubmit={onSubmit}>
+    <Form ref={ref} onSubmit={onSubmit}>
       <Fieldset>
         <Heading>Shipping Info</Heading>
         <InputContainer>
@@ -95,7 +107,9 @@ const CheckOutForm = forwardRef<HTMLFormElement>((props, ref) => {
             type="text"
             id="houseNumber"
             maxLength={7}
-            {...register("houseNumber", { required: "House Number Required" })}
+            {...register("houseNumber", {
+              required: "House Number Required",
+            })}
           />
         </InputContainer>
         <div>
@@ -167,14 +181,21 @@ const CheckOutForm = forwardRef<HTMLFormElement>((props, ref) => {
           </div>
         </InputContainer>
       </Fieldset>
-    </form>
+    </Form>
   );
 });
+const Form = styled.form`
+  width: 500px;
+  @media (max-width: 500px) {
+    width: 100%;
+  }
+`;
 
 const Fieldset = styled.fieldset`
   border: 0;
   padding: 0;
   display: grid;
+  margin-right: 0;
   gap: 1rem;
   position: relative;
   padding-bottom: 2rem;
@@ -184,7 +205,6 @@ const Fieldset = styled.fieldset`
     bottom: 0;
     left: 0;
     right: 0;
-    max-width: 500px;
     border-bottom: 1px solid lightgray;
   }
 `;
@@ -196,7 +216,6 @@ export const Heading = styled.h3`
 const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
-  max-width: 500px;
   input {
     padding: 0.6rem;
   }

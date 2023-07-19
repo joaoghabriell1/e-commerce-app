@@ -1,27 +1,35 @@
 import AuthContext from "../../store/auth-context";
 import { MainContainer } from "../../globalSyles";
-import { useContext, useRef } from "react";
+import { useContext, useRef, useState } from "react";
 import { AuthType } from "../../store/auth-context";
 import { Navigate } from "react-router-dom";
 import CheckOutForm from "./CheckOutForm";
 import CheckoutItemsList from "./CheckoutItemsList";
 import { Heading } from "./CheckOutForm";
 import { styled } from "styled-components";
+import OrderSubmitModal from "./OrderSubmitModal";
 
 const Checkout = () => {
   const authContext = useContext(AuthContext) as AuthType;
-  const { user, logOut } = authContext;
+  const [submited, setSubmited] = useState<boolean>(false);
+  const { user } = authContext;
   const formRef = useRef<HTMLFormElement>(null);
 
   if (!user) {
     return <Navigate to="/auth"></Navigate>;
   }
+  if (submited) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "auto";
+  }
 
   return (
     <MainContainer>
+      {submited && <OrderSubmitModal setSubmited={setSubmited} />}
       <Wrapper>
         <div>
-          <CheckOutForm ref={formRef} />
+          <CheckOutForm setSubmited={setSubmited} ref={formRef} />
         </div>
         <div>
           <Heading>Items</Heading>
@@ -37,20 +45,21 @@ const Checkout = () => {
 
 const Wrapper = styled.div`
   display: grid;
-  width: 500px;
 `;
 
 const SubmitButton = styled.button`
-  width: 200px;
   border: 0;
   background: lightgray;
   padding: 1rem;
   border-radius: 100vh;
   font-family: inherit;
   font-weight: bold;
-  width: 100%;
   margin-block: 5rem;
   border: 1px solid black;
+  width: 500px;
+  @media (max-width: 500px) {
+    width: 100%;
+  }
   &:hover {
     cursor: pointer;
     opacity: 0.8;
