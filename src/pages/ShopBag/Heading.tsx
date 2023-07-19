@@ -18,7 +18,7 @@ const ShopBagHeading = ({ cartIsEmpty, cartItems, cartTotal }: Props) => {
   return (
     <header>
       <div>
-        <Heading>SEU CARRINHO</Heading>
+        <Heading>YOUR CART</Heading>
         <div>
           <span>
             Total ({numberOfProducts}{" "}
