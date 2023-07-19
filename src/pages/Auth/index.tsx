@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import RegisterForm from "./RegisterForm";
 import LoginForm from "./LoginForm";
 import styled from "styled-components";

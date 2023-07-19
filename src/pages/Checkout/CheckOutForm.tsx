@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
 import { forwardRef, useState } from "react";
 import { cleanCart } from "../../store/cart-slice";
 import { useAppDispatch } from "../../hooks/redux-hooks";
