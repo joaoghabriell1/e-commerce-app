@@ -2,8 +2,8 @@ import styled from "styled-components";
 import AuthContext from "../../store/auth-context";
 import { useContext, useState } from "react";
 import { AuthType } from "../../store/auth-context";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useNavigate, Link, useLocation } from "react-router-dom";
+
 interface Props {
   cartTotal: number;
 }
@@ -11,6 +11,7 @@ interface Props {
 const OrderSum = ({ cartTotal }: Props) => {
   const [error, setError] = useState<boolean>(false);
   const navigate = useNavigate();
+  const location = useLocation();
   const authContext = useContext(AuthContext) as AuthType;
   const { user } = authContext;
   const handleClick = () => {
@@ -44,7 +45,7 @@ const OrderSum = ({ cartTotal }: Props) => {
           {error ? (
             <p>
               To checkout you need to{" "}
-              <Link to="/auth" state="shop-bag">
+              <Link to="/auth" state={location.pathname}>
                 LogIn
               </Link>
             </p>

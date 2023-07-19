@@ -7,7 +7,7 @@ const ReturnBtn = () => {
     <Link to="/">
       <ReturnButton>
         <img src={goback} alt="go-back icon" />
-        Voltar
+        Go Back
       </ReturnButton>
     </Link>
   );
@@ -26,6 +26,9 @@ const ReturnButton = styled.button`
   &:hover {
     cursor: pointer;
     color: hsla(16, 100%, 76%, 1);
+  }
+  img {
+    width: 24px;
   }
 `;
 

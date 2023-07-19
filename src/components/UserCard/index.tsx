@@ -25,8 +25,20 @@ const UserCard = () => {
       </UserIcon>
       {showCard ? (
         <InfoCard>
-          <div>User</div>
-          <Info>butinfo</Info>
+          <Heading>Your Account</Heading>
+          <Info>
+            <CoverLayer>
+              <span>In production</span>
+            </CoverLayer>
+            <nav>
+              <Ul>
+                <li>See your account</li>
+                <li>See orders</li>
+                <li>Favorite products</li>
+                <li>Post your products</li>
+              </Ul>
+            </nav>
+          </Info>
           <ActionButton onClick={handleClick}>
             {user ? "LogOut" : "LogIn"}
           </ActionButton>
@@ -35,6 +47,40 @@ const UserCard = () => {
     </div>
   );
 };
+
+const CoverLayer = styled.div`
+  position: absolute;
+  background: #8080809b;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  top: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  span {
+    font-weight: bold;
+    font-size: 2.5rem;
+  }
+`;
+
+const Ul = styled.ul`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 0.5rem;
+  font-size: 1.4rem;
+  justify-content: center;
+  & > li:hover {
+    color: orangered;
+    font-weight: 600;
+    cursor: pointer;
+  }
+`;
+
+const Heading = styled.div`
+  font-weight: bold;
+`;
 
 const InfoCard = styled.div`
   position: absolute;
@@ -70,6 +116,10 @@ const UserIcon = styled.div`
 
 const Info = styled.div`
   flex: 1;
+  position: relative;
+  &:hover > div {
+    display: flex;
+  }
 `;
 
 const ActionButton = styled.button`

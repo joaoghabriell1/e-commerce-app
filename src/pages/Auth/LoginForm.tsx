@@ -33,14 +33,17 @@ const LoginForm = () => {
   const authContext = useContext(AuthContext) as AuthType;
   const { logIn, serverErrors, cleanServerErrors } = authContext;
 
-  console.log(location);
   const onSubmit = handleSubmit(async (data) => {
     const { email, password } = data;
     cleanServerErrors();
     try {
       setLoading(true);
       await logIn(email, password);
-      navigate("/checkout");
+      if (location.state == "/shop-bag") {
+        navigate("/checkout");
+      } else {
+        navigate("/");
+      }
     } catch (e) {
       console.log(e);
     } finally {
