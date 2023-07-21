@@ -3,6 +3,8 @@ import { useForm } from "react-hook-form";
 import { forwardRef, useState } from "react";
 import { cleanCart } from "../../store/cart-slice";
 import { useAppDispatch } from "../../hooks/redux-hooks";
+import { useGetCurrentUserId } from "../../hooks/getCurrentUserId";
+import { sendOrderData } from "../../store/orders-async";
 
 type Props = {
   setSubmited: React.Dispatch<React.SetStateAction<boolean>>;
@@ -19,6 +21,7 @@ type FormValues = {
 };
 
 const CheckOutForm = forwardRef<HTMLFormElement, Props>((props, ref) => {
+  const { currentUserId } = useGetCurrentUserId();
   const [city, setCity] = useState<string>("");
   const [state, setState] = useState<string>("");
   const dispatch = useAppDispatch();
@@ -30,9 +33,10 @@ const CheckOutForm = forwardRef<HTMLFormElement, Props>((props, ref) => {
   } = useForm<FormValues>({ mode: "onBlur" });
 
   const onSubmit = handleSubmit(() => {
-    props.setSubmited(true);
-    window.scrollTo(0, 0);
-    dispatch(cleanCart());
+    //props.setSubmited(true);
+    //window.scrollTo(0, 0);
+    dispatch(sendOrderData(currentUserId!, [{ title: "teste" }]));
+    //dispatch(cleanCart());
   });
 
   return (

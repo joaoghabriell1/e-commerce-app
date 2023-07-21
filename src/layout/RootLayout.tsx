@@ -20,7 +20,7 @@ const RootLayout = () => {
 
   useEffect(() => {
     dispatch(setTotal(cartItems));
-  }, [cartItems]);
+  }, [cartItems, dispatch]);
 
   useEffect(() => {
     dispatch(setProducts(products));

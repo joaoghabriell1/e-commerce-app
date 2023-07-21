@@ -6,6 +6,7 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 import { auth } from "../firebase";
+import { userType } from "../types/user";
 
 interface Props {
   children: ReactNode;
@@ -48,23 +49,43 @@ export const AuthContextProvider = ({ children }: Props) => {
     });
   };
 
+  const createUserOnDataBase = async (user: userType) => {
+    const postData = await fetch(
+      `https://ecommerce-api-d47f1-default-rtdb.firebaseio.com/users.json`,
+      {
+        method: "POST",
+        headers: { "Content-type": "Application/json" },
+        body: JSON.stringify(user),
+      }
+    );
+  };
+
+  const createUser = (email: string, password: string) => {
+    return createUserWithEmailAndPassword(auth, email, password)
+      .then((response) => {
+        const id = response.user.uid;
+        const user = {
+          id: id,
+          cartItems: [],
+          orders: [],
+        };
+        createUserOnDataBase(user);
+      })
+
+      .catch((error) => {
+        setErrors({
+          code: error.code,
+          message: error.message,
+        });
+      });
+  };
+
   const cleanServerErrors = () => {
     setErrors(null);
   };
 
   const logOut = () => {
     return signOut(auth);
-  };
-
-  const createUser = (email: string, password: string) => {
-    return createUserWithEmailAndPassword(auth, email, password).catch(
-      (error) => {
-        setErrors({
-          code: error.code,
-          message: error.message,
-        });
-      }
-    );
   };
 
   const value = {
