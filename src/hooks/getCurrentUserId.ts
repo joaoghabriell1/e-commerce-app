@@ -1,6 +1,6 @@
 import { useContext, useState, useEffect } from "react";
-import AuthContext from "../store/auth-context";
-import { AuthType } from "../store/auth-context";
+import AuthContext from "../store/auth/auth-context";
+import { AuthType } from "../store/auth/auth-context";
 
 export const useGetCurrentUserId = () => {
   const [currentUserId, setCurrentUserId] = useState<string | null>(null);

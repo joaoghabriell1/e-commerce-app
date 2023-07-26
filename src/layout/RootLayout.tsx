@@ -2,29 +2,25 @@ import { Outlet } from "react-router-dom";
 import Header from "../components/Header";
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../hooks/redux-hooks";
-import { setProducts } from "../store/products-slice";
-import useFetchProducts from "../hooks/useFetchProducts";
-import { fetchCartData } from "../store/cart-async";
-import { sendCartData } from "../store/cart-async";
-import { setTotal } from "../store/cart-slice";
+import { sendCartData } from "../store/cart/cart-async";
+import { setTotal } from "../store/cart/cart-slice";
+import { getAllProducts } from "../store/products/products-thunks";
+import { getCartData } from "../store/cart/cart-async";
+
 let isInitial = true;
 
 const RootLayout = () => {
-  const { products } = useFetchProducts("https://dummyjson.com/products");
   const cartItems = useAppSelector((state) => state.cart.items);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(fetchCartData());
+    dispatch(getAllProducts());
+    dispatch(getCartData());
   }, []);
 
   useEffect(() => {
     dispatch(setTotal(cartItems));
-  }, [cartItems, dispatch]);
-
-  useEffect(() => {
-    dispatch(setProducts(products));
-  }, [products, dispatch]);
+  }, [cartItems]);
 
   useEffect(() => {
     if (isInitial) {

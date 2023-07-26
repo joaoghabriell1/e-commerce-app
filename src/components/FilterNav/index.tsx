@@ -3,7 +3,7 @@ import { useAppDispatch } from "../../hooks/redux-hooks";
 import {
   setFilter,
   setEspecificProductFilter,
-} from "../../store/products-slice";
+} from "../../store/products/products-slice";
 
 interface Props {
   filters: string[];

@@ -1,7 +1,7 @@
-import AuthContext from "../../store/auth-context";
+import AuthContext from "../../store/auth/auth-context";
 import { MainContainer } from "../../globalSyles";
 import { useContext, useRef, useState } from "react";
-import { AuthType } from "../../store/auth-context";
+import { AuthType } from "../../store/auth/auth-context";
 import { Navigate } from "react-router-dom";
 import CheckOutForm from "./CheckOutForm";
 import CheckoutItemsList from "./CheckoutItemsList";

@@ -9,8 +9,8 @@ import {
 import { useForm } from "react-hook-form";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import AuthContext from "../../store/auth-context";
-import { AuthType } from "../../store/auth-context";
+import AuthContext from "../../store/auth/auth-context.tsx";
+import { AuthType } from "../../store/auth/auth-context.tsx";
 import { Link } from "react-router-dom";
 import ServerErrorMessages from "./ServerErrors.ts";
 import { useLocation } from "react-router-dom";

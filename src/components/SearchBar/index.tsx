@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useAppDispatch } from "../../hooks/redux-hooks";
-import { setEspecificProductFilter } from "../../store/products-slice";
+import { setEspecificProductFilter } from "../../store/products/products-slice";
 import styled from "styled-components";
 import searchIcon from "../../assets/search-icon.svg";
 import { useNavigate } from "react-router-dom";
-import { setFilter } from "../../store/products-slice";
+import { setFilter } from "../../store/products/products-slice";
 
 const SearchBar = () => {
   const [searchInput, setSearchInput] = useState<string>("");

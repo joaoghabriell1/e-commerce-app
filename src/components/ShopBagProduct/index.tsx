@@ -3,7 +3,7 @@ import { styled } from "styled-components";
 import DeleteProductBtn from "./DeleteProductBtn";
 import { cartItem } from "../../types/cartItem";
 import { useAppDispatch } from "../../hooks/redux-hooks";
-import { changeAmount } from "../../store/cart-slice";
+import { changeAmount } from "../../store/cart/cart-slice";
 
 const ShopBagProduct = ({
   title,

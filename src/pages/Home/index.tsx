@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { MainContainer } from "../../globalSyles";
 import { useAppSelector } from "../../hooks/redux-hooks";
 import styled from "styled-components";

@@ -3,7 +3,7 @@ import RegisterForm from "./RegisterForm";
 import LoginForm from "./LoginForm";
 import styled from "styled-components";
 import { useSearchParams } from "react-router-dom";
-import AuthContext, { AuthType } from "../../store/auth-context";
+import AuthContext, { AuthType } from "../../store/auth/auth-context";
 import { Navigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 

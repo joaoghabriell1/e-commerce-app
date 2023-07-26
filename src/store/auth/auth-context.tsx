@@ -5,8 +5,8 @@ import {
   signOut,
   onAuthStateChanged,
 } from "firebase/auth";
-import { auth } from "../firebase";
-import { userType } from "../types/user";
+import { auth } from "../../firebase";
+import { userType } from "../../types/user";
 
 interface Props {
   children: ReactNode;

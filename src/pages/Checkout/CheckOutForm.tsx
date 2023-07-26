@@ -1,10 +1,9 @@
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
 import { forwardRef, useState } from "react";
-import { cleanCart } from "../../store/cart-slice";
 import { useAppDispatch } from "../../hooks/redux-hooks";
 import { useGetCurrentUserId } from "../../hooks/getCurrentUserId";
-import { sendOrderData } from "../../store/orders-async";
+import { sendOrderData } from "../../store/orders/orders-async";
 
 type Props = {
   setSubmited: React.Dispatch<React.SetStateAction<boolean>>;

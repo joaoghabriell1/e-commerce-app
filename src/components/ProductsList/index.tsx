@@ -6,6 +6,7 @@ interface Props {
   productsList: Product[];
   especificProductFilter: string | null;
 }
+
 const ProductsList = ({ productsList, especificProductFilter }: Props) => {
   if (especificProductFilter && productsList.length === 0) {
     return <p>No products were found!</p>;

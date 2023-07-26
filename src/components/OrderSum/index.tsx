@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import AuthContext from "../../store/auth-context";
+import AuthContext from "../../store/auth/auth-context";
 import { useContext, useState } from "react";
-import { AuthType } from "../../store/auth-context";
+import { AuthType } from "../../store/auth/auth-context";
 import { useNavigate, Link, useLocation } from "react-router-dom";
 
 interface Props {

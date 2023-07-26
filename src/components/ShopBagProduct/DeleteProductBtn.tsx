@@ -1,7 +1,7 @@
 import thrashCan from "../../assets/thrash-can.svg";
 import styled from "styled-components";
 import { useAppDispatch } from "../../hooks/redux-hooks";
-import { removeItem } from "../../store/cart-slice";
+import { removeItem } from "../../store/cart/cart-slice";
 
 interface Props {
   id: number;

@@ -2,7 +2,7 @@ import { styled } from "styled-components";
 import { useAppDispatch } from "../../hooks/redux-hooks";
 import { cartItem } from "../../types/cartItem";
 import shoppingBag from "../../assets/shopping-bag.svg";
-import { addProduct } from "../../store/cart-slice";
+import { addProduct } from "../../store/cart/cart-slice";
 import { useNavigate } from "react-router-dom";
 
 interface Props {

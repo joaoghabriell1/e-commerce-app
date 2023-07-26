@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import userIcon from "../../assets/user-icon.svg";
 import { useState, useContext } from "react";
-import AuthContext from "../../store/auth-context";
-import { AuthType } from "../../store/auth-context";
+import AuthContext from "../../store/auth/auth-context";
+import { AuthType } from "../../store/auth/auth-context";
 import { useNavigate } from "react-router-dom";
 
 const UserCard = () => {
