@@ -24,7 +24,6 @@ const Home = () => {
     .map((item) => item.category)
     .filter((item, index, arr) => arr.indexOf(item) === index);
 
-  console.log(loading);
   return (
     <>
       <MainContainer>

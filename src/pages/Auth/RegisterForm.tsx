@@ -40,9 +40,9 @@ const RegisterForm = () => {
     cleanServerErrors();
     try {
       setLoading(true);
-      const create = await createUser(email, password);
-      if (create !== undefined) {
-        navigate("/checkout");
+      const status = await createUser(email, password);
+      if (status === undefined) {
+        return;
       }
     } catch (e) {
       console.log(e);

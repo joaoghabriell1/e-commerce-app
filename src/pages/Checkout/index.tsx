@@ -10,9 +10,8 @@ import { styled } from "styled-components";
 import OrderSubmitModal from "./OrderSubmitModal";
 
 const Checkout = () => {
-  const authContext = useContext(AuthContext) as AuthType;
+  const { user } = useContext(AuthContext) as AuthType;
   const [submited, setSubmited] = useState<boolean>(false);
-  const { user } = authContext;
   const formRef = useRef<HTMLFormElement>(null);
 
   if (!user) {

@@ -14,6 +14,7 @@ const OrderSum = ({ cartTotal }: Props) => {
   const location = useLocation();
   const authContext = useContext(AuthContext) as AuthType;
   const { user } = authContext;
+
   const handleClick = () => {
     if (!user) {
       setError(true);

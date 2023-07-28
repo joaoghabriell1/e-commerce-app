@@ -6,17 +6,23 @@ import { useSearchParams } from "react-router-dom";
 import AuthContext, { AuthType } from "../../store/auth/auth-context";
 import { Navigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const Auth = () => {
   const authContext = useContext(AuthContext) as AuthType;
   const { user } = authContext;
   const [searchParams] = useSearchParams();
+  const { state } = useLocation();
 
   let isLogin = searchParams.get("mode");
   if (!isLogin) isLogin = "login";
 
   if (user) {
-    return <Navigate to="/checkout"></Navigate>;
+    if (state) {
+      return <Navigate to={`${state}`} />;
+    } else {
+      return <Navigate to={"/"} />;
+    }
   }
 
   return (

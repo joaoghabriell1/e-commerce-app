@@ -4,12 +4,15 @@ import { useState, useContext } from "react";
 import AuthContext from "../../store/auth/auth-context";
 import { AuthType } from "../../store/auth/auth-context";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useGetCurrentUserId } from "../../hooks/getCurrentUserId";
 
 const UserCard = () => {
   const navigate = useNavigate();
   const authContext = useContext(AuthContext) as AuthType;
   const { user, logOut } = authContext;
   const [showCard, setShowCard] = useState<boolean>(false);
+  const { currentUserId } = useGetCurrentUserId();
 
   const handleClick = () => {
     if (user) {
@@ -18,6 +21,7 @@ const UserCard = () => {
       navigate("auth");
     }
   };
+
   return (
     <div>
       <UserIcon onClick={() => setShowCard((prev) => !prev)}>
@@ -32,8 +36,10 @@ const UserCard = () => {
             </CoverLayer>
             <nav>
               <Ul>
+                <li>
+                  <Link to={`${currentUserId}/orders`}>See your orders</Link>
+                </li>
                 <li>See your account</li>
-                <li>See orders</li>
                 <li>Favorite products</li>
                 <li>Post your products</li>
               </Ul>
@@ -54,7 +60,7 @@ const CoverLayer = styled.div`
   right: 0;
   left: 0;
   bottom: 0;
-  top: 0;
+  top: 3rem;
   display: none;
   justify-content: center;
   align-items: center;

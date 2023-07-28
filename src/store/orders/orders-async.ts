@@ -19,6 +19,7 @@ export const getOrders = (id: string) => {
     dispatch(setOrders({ type: "loading", payload: [] }));
     try {
       const response = await ApiServices.getUserOrders(id);
+      console.log(response.data);
       dispatch(setOrders({ type: "success", payload: response.data || [] }));
     } catch (e) {
       console.log(e);
