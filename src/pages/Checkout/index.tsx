@@ -20,7 +20,6 @@ const Checkout = () => {
   }
   if (submited) {
     document.body.style.overflow = "hidden";
-  } else {
   }
 
   return (

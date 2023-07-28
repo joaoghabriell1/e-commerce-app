@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import { useAppSelector } from "../../hooks/redux-hooks";
 import { Link } from "react-router-dom";
 import { MainContainer } from "../../globalSyles";
@@ -6,10 +7,16 @@ import SearchBar from "../SearchBar";
 import cart from "../../assets/shopping-bag.svg";
 import productAmount from "../../utils/numberOfProducts";
 import UserCard from "../UserCard";
+import AuthContext from "../../store/auth/auth-context";
+import { AuthType } from "../../store/auth/auth-context";
+import OrdersCard from "../OrdersCard";
 
 const Header = () => {
-  const cartItems = useAppSelector((state) => state.cart.items);
+  const authContext = useContext(AuthContext) as AuthType;
+  const { user } = authContext;
+  const cartItems = useAppSelector((state: any) => state.cart.items);
   const amountOfProducts = productAmount(cartItems);
+
   return (
     <HeaderTag>
       <MainContainer>
@@ -18,6 +25,7 @@ const Header = () => {
             <Link to="">e-commerce</Link>
           </Logo>
           <SearchBar />
+          {user && <OrdersCard />}
           <Cart>
             <Link to="shop-bag">
               <img src={cart} alt="" />

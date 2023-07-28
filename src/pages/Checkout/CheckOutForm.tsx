@@ -1,9 +1,11 @@
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
 import { forwardRef, useState } from "react";
-import { useAppDispatch } from "../../hooks/redux-hooks";
+import { useAppDispatch, useAppSelector } from "../../hooks/redux-hooks";
 import { useGetCurrentUserId } from "../../hooks/getCurrentUserId";
-import { sendOrderData } from "../../store/orders/orders-async";
+import { postOrderData } from "../../store/orders/orders-async";
+import { OrderType } from "../../types/order";
+import { cleanCart } from "../../store/cart/cart-slice";
 
 type Props = {
   setSubmited: React.Dispatch<React.SetStateAction<boolean>>;
@@ -20,6 +22,9 @@ type FormValues = {
 };
 
 const CheckOutForm = forwardRef<HTMLFormElement, Props>((props, ref) => {
+  const cart = useAppSelector((state) => state.cart.items);
+  const total = useAppSelector((state) => state.cart.total);
+  const orders = useAppSelector((state) => state.orders.orders);
   const { currentUserId } = useGetCurrentUserId();
   const [city, setCity] = useState<string>("");
   const [state, setState] = useState<string>("");
@@ -31,11 +36,23 @@ const CheckOutForm = forwardRef<HTMLFormElement, Props>((props, ref) => {
     formState: { errors },
   } = useForm<FormValues>({ mode: "onBlur" });
 
-  const onSubmit = handleSubmit(() => {
-    //props.setSubmited(true);
-    //window.scrollTo(0, 0);
-    dispatch(sendOrderData(currentUserId!, [{ title: "teste" }]));
-    //dispatch(cleanCart());
+  const onSubmit = handleSubmit(async (formData) => {
+    const orderData: OrderType[] = [
+      ...orders,
+      {
+        zipCode: formData.zipCode,
+        state: state,
+        city: city,
+        adress: formData.address,
+        houseNum: formData.houseNumber,
+        order: cart,
+        total: total,
+      },
+    ];
+    props.setSubmited(true);
+    window.scrollTo(0, 0);
+    dispatch(postOrderData(currentUserId!, orderData));
+    dispatch(cleanCart());
   });
 
   return (

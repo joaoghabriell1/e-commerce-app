@@ -38,7 +38,8 @@ const LoginForm = () => {
     cleanServerErrors();
     try {
       setLoading(true);
-      await logIn(email, password);
+      const status = await logIn(email, password);
+      if (status === undefined) return;
       if (location.state == "/shop-bag") {
         navigate("/checkout");
       } else {

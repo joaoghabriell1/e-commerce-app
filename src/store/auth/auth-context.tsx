@@ -42,6 +42,7 @@ export const AuthContextProvider = ({ children }: Props) => {
 
   const logIn = (email: string, password: string) => {
     return signInWithEmailAndPassword(auth, email, password).catch((error) => {
+      console.log(error);
       setErrors({
         code: error.code,
         message: error.message,
