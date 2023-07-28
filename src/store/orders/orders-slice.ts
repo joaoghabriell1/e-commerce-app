@@ -24,7 +24,6 @@ const OrdersSlice = createSlice({
   reducers: {
     setOrders: (state, action: PayloadAction<Payload>) => {
       const { type, payload } = action.payload;
-      console.log(payload);
       switch (type) {
         case "loading":
           state.loading = true;

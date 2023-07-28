@@ -50,7 +50,7 @@ const ProductsList = ({ productsList, especificProductFilter }: Props) => {
   );
 };
 
-const Ul = styled.ul`
+export const Ul = styled.ul`
   margin-block: 1rem;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(256px, 1fr));
