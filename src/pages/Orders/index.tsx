@@ -1,19 +1,17 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux-hooks";
 import { useParams } from "react-router-dom";
 import { getOrders } from "../../store/orders/orders-async";
+import { selectOrders } from "../../store/orders/orders-slice";
 
 const Orders = () => {
+  const orders = useAppSelector(selectOrders);
   const { id } = useParams();
   const dispatch = useAppDispatch();
-  const { orders } = useAppSelector((state) => state.orders);
-  console.log(id);
 
   useEffect(() => {
     dispatch(getOrders(id!));
   }, []);
-
-  console.log(orders);
 
   return (
     <>

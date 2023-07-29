@@ -3,26 +3,28 @@ import { OrderType } from "../../types/order";
 import { AppDispatch } from "..";
 import { setOrders } from "./orders-slice";
 
-export const postOrderData = (id: string, order: OrderType[]): any => {
-  return async (dispatch: AppDispatch) => {
+export const postOrderData = (id: string, order: OrderType[]) => {
+  return async (dispatch: AppDispatch): Promise<string> => {
     try {
       const response = await ApiServices.sendOrder(id, order);
       dispatch(setOrders({ type: "success", payload: order }));
+      return response;
     } catch (e) {
       console.log(e);
+      return "An error ocurred";
     }
   };
 };
 
-export const getOrders = (id: string) => {
-  return async (dispatch: AppDispatch) => {
+export function getOrders(id: string) {
+  return async (dispatch: AppDispatch): Promise<void | string> => {
     dispatch(setOrders({ type: "loading", payload: [] }));
     try {
       const response = await ApiServices.getUserOrders(id);
-      console.log(response.data);
       dispatch(setOrders({ type: "success", payload: response.data || [] }));
     } catch (e) {
       console.log(e);
+      return "An error ocurred";
     }
   };
-};
+}

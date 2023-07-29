@@ -157,7 +157,29 @@ const CheckOutForm = forwardRef<HTMLFormElement, Props>((props, ref) => {
           <input
             type="text"
             id="expDate"
-            {...register("expDate", { required: "Expiration Date Required" })}
+            placeholder="Formate: 02/2028 - 02/28"
+            {...register("expDate", {
+              required: "Expiration Date Required",
+              pattern: {
+                value: /^(0[1-9]|1[0-2])\/?([0-9]{4}|[0-9]{2})$/g,
+                message:
+                  "Please, use one of the required formats. Eg: 02/28 - 02/2028",
+              },
+              validate: {
+                isDateInTheFuture: (fieldValue: string) => {
+                  let month = fieldValue.split("/")[0];
+                  let year = fieldValue.split("/")[1];
+
+                  if (year.length === 2) {
+                    year = `20${year}`;
+                  }
+
+                  const expDate = new Date(+year, +month - 1);
+                  const today = new Date();
+                  return expDate > today || "Insert a valid date, please.";
+                },
+              },
+            })}
           />
           <div>
             {errors?.expDate && (
@@ -170,11 +192,12 @@ const CheckOutForm = forwardRef<HTMLFormElement, Props>((props, ref) => {
           <input
             type="text"
             id="creditCardNumber"
+            placeholder="xxxx-xxxx-xxxx-xxxx"
             {...register("creditCardNumber", {
               required: "Credit Card Number Required",
               pattern: {
                 value: /(\d{4}[-. ]?){4}|\d{4}[-. ]?\d{6}[-. ]?\d{5}/g,
-                message: "Format invalid.",
+                message: "Invalid format.",
               },
             })}
           />
@@ -203,6 +226,7 @@ const CheckOutForm = forwardRef<HTMLFormElement, Props>((props, ref) => {
     </Form>
   );
 });
+
 const Form = styled.form`
   width: 500px;
   @media (max-width: 500px) {
@@ -236,7 +260,14 @@ const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
   input {
-    padding: 0.6rem;
+    padding: 0.9rem;
+    border-radius: 5px;
+  }
+  input[type="text"]:disabled {
+    background-color: #96929260;
+    outline: 0;
+    border: 2px solid black;
+    font-weight: bold;
   }
 
   label {

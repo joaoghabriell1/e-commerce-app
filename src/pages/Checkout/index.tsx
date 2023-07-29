@@ -25,13 +25,9 @@ const Checkout = () => {
     <MainContainer>
       {submited && <OrderSubmitModal setSubmited={setSubmited} />}
       <Wrapper>
-        <div>
-          <CheckOutForm setSubmited={setSubmited} ref={formRef} />
-        </div>
-        <div>
-          <Heading>Items</Heading>
-          <CheckoutItemsList />
-        </div>
+        <CheckOutForm setSubmited={setSubmited} ref={formRef} />
+        <Heading>Items</Heading>
+        <CheckoutItemsList />
         <SubmitButton onClick={() => formRef.current?.requestSubmit()}>
           Finish you order
         </SubmitButton>
@@ -46,13 +42,14 @@ const Wrapper = styled.div`
 
 const SubmitButton = styled.button`
   border: 0;
-  background: lightgray;
+  background: #969292;
   padding: 1rem;
+  color: black;
   border-radius: 100vh;
   font-family: inherit;
   font-weight: bold;
   margin-block: 5rem;
-  border: 1px solid black;
+  border: 2px solid black;
   width: 500px;
   @media (max-width: 500px) {
     width: 100%;
