@@ -37,6 +37,8 @@ const CheckOutForm = forwardRef<HTMLFormElement, Props>((props, ref) => {
   } = useForm<FormValues>({ mode: "onBlur" });
 
   const onSubmit = handleSubmit(async (formData) => {
+    const todaysDate = new Date().toISOString();
+
     const orderData: OrderType[] = [
       ...orders,
       {
@@ -47,8 +49,10 @@ const CheckOutForm = forwardRef<HTMLFormElement, Props>((props, ref) => {
         houseNum: formData.houseNumber,
         order: cart,
         total: total,
+        date: todaysDate,
       },
     ];
+
     props.setSubmited(true);
     window.scrollTo(0, 0);
     dispatch(postOrderData(currentUserId!, orderData));
@@ -157,7 +161,7 @@ const CheckOutForm = forwardRef<HTMLFormElement, Props>((props, ref) => {
           <input
             type="text"
             id="expDate"
-            placeholder="Formate: 02/2028 - 02/28"
+            placeholder="Format: 02/2028 - 02/28"
             {...register("expDate", {
               required: "Expiration Date Required",
               pattern: {

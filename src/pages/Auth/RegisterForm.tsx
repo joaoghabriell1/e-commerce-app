@@ -31,7 +31,6 @@ const RegisterForm = () => {
     watch,
   } = useForm<FormValues>();
 
-  const navigate = useNavigate();
   const authContext = useContext(AuthContext) as AuthType;
   const { createUser, serverErrors, cleanServerErrors } = authContext;
 

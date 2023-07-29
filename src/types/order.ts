@@ -8,4 +8,5 @@ export interface OrderType {
   houseNum: string;
   order: cartItem[];
   total: number;
+  date: string;
 }

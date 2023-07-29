@@ -1,13 +1,15 @@
-import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux-hooks";
-import { useParams } from "react-router-dom";
-import { getOrders } from "../../store/orders/orders-async";
 import { selectOrders } from "../../store/orders/orders-slice";
+import { getOrders } from "../../store/orders/orders-async";
+import { MainContainer } from "../../globalSyles";
+import { useParams } from "react-router-dom";
+import OrdersList from "./OrdersList";
+import { useEffect } from "react";
 
 const Orders = () => {
-  const orders = useAppSelector(selectOrders);
   const { id } = useParams();
   const dispatch = useAppDispatch();
+  const orders = useAppSelector(selectOrders);
 
   useEffect(() => {
     dispatch(getOrders(id!));
@@ -15,9 +17,9 @@ const Orders = () => {
 
   return (
     <>
-      {orders.map((order, index) => {
-        return <li key={index}>{order.city}</li>;
-      })}
+      <MainContainer>
+        <OrdersList orders={orders} />
+      </MainContainer>
     </>
   );
 };
