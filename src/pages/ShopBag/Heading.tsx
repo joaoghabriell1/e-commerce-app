@@ -22,9 +22,9 @@ const ShopBagHeading = ({ cartIsEmpty, cartItems, cartTotal }: Props) => {
         <div>
           <span>
             Total ({numberOfProducts}{" "}
-            {numberOfProducts === 1 ? "produto" : "produtos"}){" "}
+            {numberOfProducts === 1 ? "product" : "products"}){" "}
           </span>
-          <CartTotal>R${cartTotal},00</CartTotal>
+          <CartTotal>U${cartTotal},00</CartTotal>
         </div>
       </div>
     </header>

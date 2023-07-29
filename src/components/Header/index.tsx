@@ -8,8 +8,9 @@ import productAmount from "../../utils/numberOfProducts";
 import UserCard from "../UserCard";
 
 const Header = () => {
-  const cartItems = useAppSelector((state) => state.cart.items);
+  const cartItems = useAppSelector((state: any) => state.cart.items);
   const amountOfProducts = productAmount(cartItems);
+
   return (
     <HeaderTag>
       <MainContainer>

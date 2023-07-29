@@ -1,14 +1,13 @@
-import { useEffect } from "react";
 import { MainContainer } from "../../globalSyles";
 import { useAppSelector } from "../../hooks/redux-hooks";
 import styled from "styled-components";
 import ProductsList from "../../components/ProductsList";
 import FilterNav from "../../components/FilterNav";
+import ProductsSkeletonLoading from "./ProductsSkeletonLoading";
 
 const Home = () => {
-  const { categoryFilter, products, especificProductFilter } = useAppSelector(
-    (state) => state.products
-  );
+  const { categoryFilter, products, especificProductFilter, loading } =
+    useAppSelector((state) => state.products);
 
   let filteredProducts = products.filter(({ category }) => {
     return category?.includes(categoryFilter);
@@ -31,10 +30,15 @@ const Home = () => {
         <Header>
           <FilterNav categoryFilter={categoryFilter} filters={filters} />
         </Header>
-        <ProductsList
-          especificProductFilter={especificProductFilter}
-          productsList={filteredProducts}
-        />
+
+        {loading ? (
+          <ProductsSkeletonLoading />
+        ) : (
+          <ProductsList
+            especificProductFilter={especificProductFilter}
+            productsList={filteredProducts}
+          />
+        )}
       </MainContainer>
     </>
   );

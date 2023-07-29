@@ -31,7 +31,6 @@ const RegisterForm = () => {
     watch,
   } = useForm<FormValues>();
 
-  const navigate = useNavigate();
   const authContext = useContext(AuthContext) as AuthType;
   const { createUser, serverErrors, cleanServerErrors } = authContext;
 
@@ -40,9 +39,9 @@ const RegisterForm = () => {
     cleanServerErrors();
     try {
       setLoading(true);
-      const create = await createUser(email, password);
-      if (create !== undefined) {
-        navigate("/checkout");
+      const status = await createUser(email, password);
+      if (status === undefined) {
+        return;
       }
     } catch (e) {
       console.log(e);

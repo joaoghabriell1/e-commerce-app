@@ -1,34 +1,30 @@
-export const sendOrderData = (id: string, order: any[]) => {
-  return async () => {
-    const getId = async () => {
-      const response = await fetch(
-        `https://ecommerce-api-d47f1-default-rtdb.firebaseio.com/users.json?orderBy="id"&equalTo="${id}"`
-      );
-      const data = await response.json();
-      let dataBaseKey;
-      for (let key in data) {
-        dataBaseKey = key;
-      }
-      senData(dataBaseKey!);
-    };
+import ApiServices from "../../api/apiServices";
+import { OrderType } from "../../types/order";
+import { AppDispatch } from "..";
+import { setOrders } from "./orders-slice";
 
-    const senData = async (id: string) => {
-      const response = await fetch(
-        `https://ecommerce-api-d47f1-default-rtdb.firebaseio.com/users/${id}/orders.json`,
-        {
-          method: "POST",
-          headers: { "Content-type": "Applicaton/json" },
-          body: JSON.stringify(order),
-        }
-      );
-      if (!response.ok) {
-        throw new Error("Couldn't send cart data");
-      }
-    };
+export const postOrderData = (id: string, order: OrderType[]) => {
+  return async (dispatch: AppDispatch): Promise<string> => {
     try {
-      getId();
-    } catch (error) {
-      console.log(error);
+      const response = await ApiServices.sendOrder(id, order);
+      dispatch(setOrders({ type: "success", payload: order }));
+      return response;
+    } catch (e) {
+      console.log(e);
+      return "An error ocurred";
     }
   };
 };
+
+export function getOrders(id: string) {
+  return async (dispatch: AppDispatch): Promise<void | string> => {
+    dispatch(setOrders({ type: "loading", payload: [] }));
+    try {
+      const response = await ApiServices.getUserOrders(id);
+      dispatch(setOrders({ type: "success", payload: response.data || [] }));
+    } catch (e) {
+      console.log(e);
+      return "An error ocurred";
+    }
+  };
+}

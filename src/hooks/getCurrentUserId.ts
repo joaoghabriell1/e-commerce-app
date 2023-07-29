@@ -8,7 +8,11 @@ export const useGetCurrentUserId = () => {
   const { user } = authContext;
 
   useEffect(() => {
-    setCurrentUserId(user.uid);
+    if (user) {
+      setCurrentUserId(user.uid);
+    } else {
+      setCurrentUserId(null);
+    }
   }, [user]);
 
   return { currentUserId };

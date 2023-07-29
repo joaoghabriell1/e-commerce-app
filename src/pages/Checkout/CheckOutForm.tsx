@@ -1,9 +1,11 @@
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
 import { forwardRef, useState } from "react";
-import { useAppDispatch } from "../../hooks/redux-hooks";
+import { useAppDispatch, useAppSelector } from "../../hooks/redux-hooks";
 import { useGetCurrentUserId } from "../../hooks/getCurrentUserId";
-import { sendOrderData } from "../../store/orders/orders-async";
+import { postOrderData } from "../../store/orders/orders-async";
+import { OrderType } from "../../types/order";
+import { cleanCart } from "../../store/cart/cart-slice";
 
 type Props = {
   setSubmited: React.Dispatch<React.SetStateAction<boolean>>;
@@ -20,6 +22,9 @@ type FormValues = {
 };
 
 const CheckOutForm = forwardRef<HTMLFormElement, Props>((props, ref) => {
+  const cart = useAppSelector((state) => state.cart.items);
+  const total = useAppSelector((state) => state.cart.total);
+  const orders = useAppSelector((state) => state.orders.orders);
   const { currentUserId } = useGetCurrentUserId();
   const [city, setCity] = useState<string>("");
   const [state, setState] = useState<string>("");
@@ -31,11 +36,27 @@ const CheckOutForm = forwardRef<HTMLFormElement, Props>((props, ref) => {
     formState: { errors },
   } = useForm<FormValues>({ mode: "onBlur" });
 
-  const onSubmit = handleSubmit(() => {
-    //props.setSubmited(true);
-    //window.scrollTo(0, 0);
-    dispatch(sendOrderData(currentUserId!, [{ title: "teste" }]));
-    //dispatch(cleanCart());
+  const onSubmit = handleSubmit(async (formData) => {
+    const todaysDate = new Date().toISOString();
+
+    const orderData: OrderType[] = [
+      ...orders,
+      {
+        zipCode: formData.zipCode,
+        state: state,
+        city: city,
+        adress: formData.address,
+        houseNum: formData.houseNumber,
+        order: cart,
+        total: total,
+        date: todaysDate,
+      },
+    ];
+
+    props.setSubmited(true);
+    window.scrollTo(0, 0);
+    dispatch(postOrderData(currentUserId!, orderData));
+    dispatch(cleanCart());
   });
 
   return (
@@ -140,7 +161,29 @@ const CheckOutForm = forwardRef<HTMLFormElement, Props>((props, ref) => {
           <input
             type="text"
             id="expDate"
-            {...register("expDate", { required: "Expiration Date Required" })}
+            placeholder="Format: 02/2028 - 02/28"
+            {...register("expDate", {
+              required: "Expiration Date Required",
+              pattern: {
+                value: /^(0[1-9]|1[0-2])\/?([0-9]{4}|[0-9]{2})$/g,
+                message:
+                  "Please, use one of the required formats. Eg: 02/28 - 02/2028",
+              },
+              validate: {
+                isDateInTheFuture: (fieldValue: string) => {
+                  let month = fieldValue.split("/")[0];
+                  let year = fieldValue.split("/")[1];
+
+                  if (year.length === 2) {
+                    year = `20${year}`;
+                  }
+
+                  const expDate = new Date(+year, +month - 1);
+                  const today = new Date();
+                  return expDate > today || "Insert a valid date, please.";
+                },
+              },
+            })}
           />
           <div>
             {errors?.expDate && (
@@ -153,11 +196,12 @@ const CheckOutForm = forwardRef<HTMLFormElement, Props>((props, ref) => {
           <input
             type="text"
             id="creditCardNumber"
+            placeholder="xxxx-xxxx-xxxx-xxxx"
             {...register("creditCardNumber", {
               required: "Credit Card Number Required",
               pattern: {
                 value: /(\d{4}[-. ]?){4}|\d{4}[-. ]?\d{6}[-. ]?\d{5}/g,
-                message: "Format invalid.",
+                message: "Invalid format.",
               },
             })}
           />
@@ -186,6 +230,7 @@ const CheckOutForm = forwardRef<HTMLFormElement, Props>((props, ref) => {
     </Form>
   );
 });
+
 const Form = styled.form`
   width: 500px;
   @media (max-width: 500px) {
@@ -219,7 +264,14 @@ const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
   input {
-    padding: 0.6rem;
+    padding: 0.9rem;
+    border-radius: 5px;
+  }
+  input[type="text"]:disabled {
+    background-color: #96929260;
+    outline: 0;
+    border: 2px solid black;
+    font-weight: bold;
   }
 
   label {

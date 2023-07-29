@@ -1,4 +1,10 @@
-import { ReactNode, createContext, useState, useEffect } from "react";
+import {
+  ReactNode,
+  createContext,
+  useState,
+  useEffect,
+  useContext,
+} from "react";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -27,13 +33,21 @@ export interface AuthType {
 
 const AuthContext = createContext<AuthType | null>(null);
 
+export const useAuth = (): AuthType => {
+  return useContext(AuthContext)!;
+};
+
 export const AuthContextProvider = ({ children }: Props) => {
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<any>("");
   const [errors, setErrors] = useState<ServerAuthError | null>(null);
 
   useEffect(() => {
     const userStatus = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
+      if (currentUser) {
+        setUser(currentUser);
+      } else {
+        setUser(null);
+      }
     });
     return () => {
       userStatus();
@@ -42,6 +56,7 @@ export const AuthContextProvider = ({ children }: Props) => {
 
   const logIn = (email: string, password: string) => {
     return signInWithEmailAndPassword(auth, email, password).catch((error) => {
+      console.log(error);
       setErrors({
         code: error.code,
         message: error.message,

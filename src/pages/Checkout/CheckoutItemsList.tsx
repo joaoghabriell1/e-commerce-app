@@ -5,7 +5,6 @@ const CheckoutItemsList = () => {
   const cart = useAppSelector((state) => state.cart.items);
   const total = useAppSelector((state) => state.cart.total);
 
-  console.log(total);
   return (
     <ItemsList>
       {cart.map((item) => {

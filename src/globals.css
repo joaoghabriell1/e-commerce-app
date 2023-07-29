@@ -13,7 +13,6 @@
   --clr-gray-100: hsla(240, 8%, 28%, 1);
   --clr-gray-200: hsla(202, 11%, 96%, 1);
   --clr-gray-300: hsla(240, 8%, 28%, 1);
-
 }
 
 ul {
@@ -34,6 +33,7 @@ a:hover {
 }
 * {
   margin: 0;
+  box-sizing: border-box;
 }
 
 html {
@@ -51,4 +51,11 @@ body {
 
 img {
   width: 100%;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
 }

@@ -5,7 +5,9 @@ import ShopBag from "./pages/ShopBag";
 import ProductPage from "./pages/ProductPage/Index";
 import Auth from "./pages/Auth";
 import Checkout from "./pages/Checkout";
+import Orders from "./pages/Orders";
 import { Loader as ProductPageLoader } from "./pages/ProductPage/Index";
+import PrivateRoutes from "./layout/PrivateRoutes";
 
 function App() {
   const router = createBrowserRouter([
@@ -23,7 +25,16 @@ function App() {
           element: <ProductPage />,
           loader: ProductPageLoader,
         },
-        { path: "checkout", element: <Checkout /> },
+        {
+          element: <PrivateRoutes />,
+          children: [
+            {
+              path: "/:id/orders",
+              element: <Orders />,
+            },
+            { path: "checkout", element: <Checkout /> },
+          ],
+        },
       ],
     },
     {
