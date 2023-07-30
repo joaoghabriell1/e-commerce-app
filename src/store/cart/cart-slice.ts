@@ -1,6 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit";
 import { PayloadAction } from "@reduxjs/toolkit";
 import { cartItem } from "../../types/cartItem";
+import { createSlice } from "@reduxjs/toolkit";
 
 interface InitialType {
   isLoading: boolean;

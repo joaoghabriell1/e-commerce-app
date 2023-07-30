@@ -1,9 +1,9 @@
 import { useAppSelector } from "../../hooks/redux-hooks";
-import { MainContainer } from "../../globalSyles";
-import styled from "styled-components";
-import OrderSum from "../../components/OrderSum";
-import ShopBagHeading from "./Heading";
 import ShopBagList from "../../components/ShopBagList";
+import { MainContainer } from "../../globalSyles";
+import OrderSum from "../../components/OrderSum";
+import styled from "styled-components";
+import ShopBagHeading from "./Heading";
 import ReturnBtn from "./ReturnBtn";
 
 const ShopBag = () => {
