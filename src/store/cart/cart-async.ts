@@ -4,8 +4,8 @@ import { AppDispatch } from "..";
 
 export const getCartData = () => {
   return (dispatch: AppDispatch) => {
-    const localStorageData = JSON.parse(localStorage.getItem("cart")) || [];
-
+    let localStorageData = JSON.parse(localStorage.getItem("cart")!);
+    if (!localStorageData) localStorageData = [];
     dispatch(setInitialCart(localStorageData));
   };
 };
