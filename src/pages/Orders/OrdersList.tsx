@@ -3,21 +3,22 @@ import styled from "styled-components";
 import OrderItem from "./OrderItem";
 
 interface Props {
+  id: string;
   orders: OrderType[];
 }
 
-const OrdersList = ({ orders }: Props) => {
+const OrdersList = ({ id, orders }: Props) => {
   return (
     <Ul>
       {orders.map((order, index) => {
-        return <OrderItem key={index} orders={order} />;
+        return <OrderItem id={id} key={index} orders={order} />;
       })}
     </Ul>
   );
 };
 
 const Ul = styled.ul`
-  margin-top: 1rem;
+  margin-block: 1rem;
   display: grid;
   gap: 1rem;
 `;

@@ -3,11 +3,13 @@ import { PayloadAction } from "@reduxjs/toolkit";
 import { cartItem } from "../../types/cartItem";
 
 interface InitialType {
+  isLoading: boolean;
   items: cartItem[];
   total: number;
 }
 
 const initialState: InitialType = {
+  isLoading: false,
   items: [],
   total: 0,
 };

@@ -1,27 +1,17 @@
-import { AppDispatch } from "..";
-import ApiServices from "../../api/apiServices";
-import { setInitialCart } from "./cart-slice";
+import { setInitialCart, setTotal } from "./cart-slice";
 import { cartItem } from "../../types/cartItem";
+import { AppDispatch } from "..";
 
 export const getCartData = () => {
-  return async (dispatch: AppDispatch) => {
-    try {
-      const response = await ApiServices.getCart();
-      const data = response.data || [];
-      dispatch(setInitialCart(data));
-    } catch (e) {
-      console.log(e);
-    }
+  return (dispatch: AppDispatch) => {
+    const localStorageData = JSON.parse(localStorage.getItem("cart") || "");
+    dispatch(setInitialCart(localStorageData));
   };
 };
 
 export const sendCartData = (cart: cartItem[]) => {
-  return async () => {
-    try {
-      const response = await ApiServices.sendCartData(cart);
-      return response;
-    } catch (e) {
-      console.log(e);
-    }
+  return (dispatch: AppDispatch) => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+    dispatch(setTotal(cart));
   };
 };

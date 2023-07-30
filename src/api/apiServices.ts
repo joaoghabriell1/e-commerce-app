@@ -23,12 +23,17 @@ const sendOrder = (id: string, data: OrderType[]): Promise<string> => {
   return ApiClient.put(`./users/${id}/orders.json`, data);
 };
 
+const getUserInfo = (id: string) => {
+  return ApiClient.get(`./users/${id}/info.json`);
+};
+
 const ApiServices = {
   getAllProducts,
   getCart,
   sendCartData,
   getUserOrders,
   sendOrder,
+  getUserInfo,
 };
 
 export default ApiServices;

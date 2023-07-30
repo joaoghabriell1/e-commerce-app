@@ -1,13 +1,13 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import RootLayout from "./layout/RootLayout";
-import Home from "./pages/Home";
-import ShopBag from "./pages/ShopBag";
-import ProductPage from "./pages/ProductPage/Index";
-import Auth from "./pages/Auth";
-import Checkout from "./pages/Checkout";
-import Orders from "./pages/Orders";
 import { Loader as ProductPageLoader } from "./pages/ProductPage/Index";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import ProductPage from "./pages/ProductPage/Index";
 import PrivateRoutes from "./layout/PrivateRoutes";
+import RootLayout from "./layout/RootLayout";
+import Checkout from "./pages/Checkout";
+import ShopBag from "./pages/ShopBag";
+import Orders from "./pages/Orders";
+import Home from "./pages/Home";
+import Auth from "./pages/Auth";
 
 function App() {
   const router = createBrowserRouter([
@@ -42,6 +42,7 @@ function App() {
       element: <Auth />,
     },
   ]);
+
   return (
     <>
       <RouterProvider router={router} />

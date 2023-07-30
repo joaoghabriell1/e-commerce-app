@@ -18,7 +18,7 @@ const Orders = () => {
   return (
     <>
       <MainContainer>
-        <OrdersList orders={orders} />
+        <OrdersList id={id!} orders={orders} />
       </MainContainer>
     </>
   );

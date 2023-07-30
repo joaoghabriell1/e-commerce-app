@@ -2,11 +2,12 @@ import formatDate from "../../../utils/formatDate";
 import styled from "styled-components";
 
 interface Props {
+  userName: string | null;
   date: string;
   total: number;
 }
 
-const Header = ({ date, total }: Props) => {
+const Header = ({ userName, date, total }: Props) => {
   const formatedDate = formatDate(date);
   return (
     <HeaderTag>
@@ -16,11 +17,11 @@ const Header = ({ date, total }: Props) => {
       </div>
       <div>
         <h5>Total</h5>
-        U${total},00
+        U${total.toFixed(2)}
       </div>
       <div>
         <h5>Sendo To</h5>
-        <p>user name</p>
+        <p>{userName}</p>
       </div>
     </HeaderTag>
   );
