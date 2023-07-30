@@ -10,6 +10,7 @@ const ShopBag = () => {
   const cartItems = useAppSelector((state) => state!.cart.items);
   const cartTotal = useAppSelector((state) => state.cart.total);
   const cartIsEmpty = cartItems.length === 0;
+
   return (
     <MainContainer>
       <Section>

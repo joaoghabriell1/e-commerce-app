@@ -19,7 +19,7 @@ export const sendCartData = (cart: cartItem[]) => {
   return async () => {
     try {
       const response = await ApiServices.sendCartData(cart);
-      const data = response.data;
+      return response;
     } catch (e) {
       console.log(e);
     }

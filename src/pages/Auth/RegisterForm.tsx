@@ -9,7 +9,6 @@ import {
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
 import AuthContext from "../../store/auth/auth-context.tsx";
 import { AuthType } from "../../store/auth/auth-context.tsx";
 import { Link } from "react-router-dom";
@@ -35,11 +34,11 @@ const RegisterForm = () => {
   const { createUser, serverErrors, cleanServerErrors } = authContext;
 
   const onSubmit = handleSubmit(async (data) => {
-    const { email, password } = data;
+    const { email, password, name } = data;
     cleanServerErrors();
     try {
       setLoading(true);
-      const status = await createUser(email, password);
+      const status = await createUser(email, password, data);
       if (status === undefined) {
         return;
       }

@@ -25,7 +25,7 @@ interface ServerAuthError {
 export interface AuthType {
   user: any;
   loadingCurrentUser: boolean;
-  createUser: (email: string, password: string) => void;
+  createUser: (email: string, password: string, data: any) => void;
   logIn: (email: string, password: string) => void;
   logOut: () => void;
   serverErrors: ServerAuthError | null;
@@ -68,27 +68,22 @@ export const AuthContextProvider = ({ children }: Props) => {
     });
   };
 
-  const createUserOnDataBase = async (user: userType) => {
+  const createUserOnDataBase = async (id: string, data: any) => {
     const postData = await fetch(
-      `https://ecommerce-api-d47f1-default-rtdb.firebaseio.com/users.json`,
+      `https://ecommerce-api-d47f1-default-rtdb.firebaseio.com/users/${id}/info.json`,
       {
-        method: "POST",
+        method: "PATCH",
         headers: { "Content-type": "Application/json" },
-        body: JSON.stringify(user),
+        body: JSON.stringify(data),
       }
     );
   };
 
-  const createUser = (email: string, password: string) => {
+  const createUser = (email: string, password: string, data: any) => {
     return createUserWithEmailAndPassword(auth, email, password)
       .then((response) => {
         const id = response.user.uid;
-        const user = {
-          id: id,
-          cartItems: [],
-          orders: [],
-        };
-        createUserOnDataBase(user);
+        createUserOnDataBase(id, data);
       })
 
       .catch((error) => {
