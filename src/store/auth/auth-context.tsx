@@ -76,6 +76,7 @@ export const AuthContextProvider = ({ children }: Props) => {
         body: JSON.stringify(data),
       }
     );
+    return postData;
   };
 
   const createUser = (email: string, password: string, data: any) => {

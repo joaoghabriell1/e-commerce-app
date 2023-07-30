@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { OrderType } from "../../types/order";
-import { useAppSelector } from "../../hooks/redux-hooks";
 import { RootState } from "..";
 
 interface Payload {
