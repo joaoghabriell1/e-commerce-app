@@ -34,7 +34,7 @@ const RegisterForm = () => {
   const { createUser, serverErrors, cleanServerErrors } = authContext;
 
   const onSubmit = handleSubmit(async (data) => {
-    const { email, password, name } = data;
+    const { email, password } = data;
     cleanServerErrors();
     try {
       setLoading(true);

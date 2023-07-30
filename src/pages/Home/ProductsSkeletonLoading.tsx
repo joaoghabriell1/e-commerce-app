@@ -10,7 +10,7 @@ const ProductsSkeletonLoading = () => {
       <Ul>
         {dummyArray.map((item, index) => {
           return (
-            <Container key={index}>
+            <Container id={item} key={index}>
               <Skeleton height={275} count={1} />
             </Container>
           );
