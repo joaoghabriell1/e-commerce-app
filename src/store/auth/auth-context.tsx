@@ -24,6 +24,7 @@ interface ServerAuthError {
 
 export interface AuthType {
   user: any;
+  loadingCurrentUser: boolean;
   createUser: (email: string, password: string) => void;
   logIn: (email: string, password: string) => void;
   logOut: () => void;
@@ -40,6 +41,7 @@ export const useAuth = (): AuthType => {
 export const AuthContextProvider = ({ children }: Props) => {
   const [user, setUser] = useState<any>("");
   const [errors, setErrors] = useState<ServerAuthError | null>(null);
+  const [loadingCurrentUser, setLoadingCurrentUser] = useState<boolean>(true);
 
   useEffect(() => {
     const userStatus = onAuthStateChanged(auth, (currentUser) => {
@@ -48,7 +50,9 @@ export const AuthContextProvider = ({ children }: Props) => {
       } else {
         setUser(null);
       }
+      setLoadingCurrentUser(false);
     });
+
     return () => {
       userStatus();
     };
@@ -105,6 +109,7 @@ export const AuthContextProvider = ({ children }: Props) => {
 
   const value = {
     user,
+    loadingCurrentUser,
     logIn,
     logOut,
     createUser: createUser,
