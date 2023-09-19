@@ -38,7 +38,7 @@ const RegisterForm = () => {
     cleanServerErrors();
     try {
       setLoading(true);
-      const status = await createUser(email, password, data);
+      createUser(email, password, data);
     } catch (e) {
       console.log(e);
     } finally {
