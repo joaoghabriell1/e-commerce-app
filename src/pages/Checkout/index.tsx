@@ -42,7 +42,7 @@ const Wrapper = styled.div`
 
 const SubmitButton = styled.button`
   border: 0;
-  background: #969292;
+  background: var(--clr-accent-purple);
   padding: 1rem;
   color: black;
   border-radius: 100vh;

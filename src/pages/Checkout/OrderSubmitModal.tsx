@@ -26,10 +26,11 @@ const OrderSubmitModal = ({ setSubmited }: Props) => {
 
 const Button = styled.button`
   font-family: inherit;
-  padding: 1rem;
+  padding: 1rem 1.5rem;
+  font-weight: 600;
   border-radius: 5px;
-  font-weight: bold;
-  background: orange;
+  background: var(--clr-accent-purple);
+  border: 0;
   &:hover {
     cursor: pointer;
     opacity: 0.8;
@@ -40,7 +41,7 @@ const Card = styled.div`
   justify-content: center;
   place-items: center;
   gap: 1rem;
-  background: var(--clr-white);
+  background: var(--clr-dark-gray-200);
   padding: 3rem;
   border-radius: 1rem;
 `;

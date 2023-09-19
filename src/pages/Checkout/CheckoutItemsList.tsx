@@ -37,6 +37,10 @@ const ItemsList = styled.ul`
 
 const CheckoutItem = styled.li`
   display: flex;
+  background: var(--clr-dark-gray-200);
+  max-width: 54rem;
+  padding: 1rem;
+  border-radius: 1rem;
 `;
 
 const ImageContainer = styled.div`

@@ -21,7 +21,7 @@ const ProductsSkeletonLoading = () => {
 };
 const Container = styled.div`
   height: 357.8px;
-  background: white;
+  background: var(--clr-dark-gray-200);
   padding: 1rem;
   border-radius: 1rem;
 `;

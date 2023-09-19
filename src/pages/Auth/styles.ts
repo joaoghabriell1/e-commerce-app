@@ -8,8 +8,8 @@ export const Message = styled.div`
   font-size: 1.4rem;
   text-align: center;
   span {
-    color: red;
-    font-weight: bold;
+    color: var(--clr-accent-green);
+    font-weight: 500;
   }
 `;
 
@@ -27,15 +27,17 @@ export const InputContainer = styled.div<InputProps>`
   label {
     font-size: 14px;
     margin-bottom: 4px;
-    font-weight: bold;
-    color: var(--clr-gray-100);
+    font-weight: 500;
+    color: var(--clr-text-300);
   }
   input {
-    background: var(--clr-gray-200);
+    background: var(--clr-dark-gray-300);
     border: 0;
+    color: var(--clr-text-300);
     border-radius: 5px;
-    padding: 1rem;
-    border: 2px solid ${(p: InputProps) => (p.invalid ? "red" : "none")};
+    padding: 1.2rem;
+    border: 1px solid
+      ${(p: InputProps) => (p.invalid ? "red" : "var(--clr-dark-gray-100)")};
     outline: 0;
   }
 `;
@@ -46,8 +48,10 @@ export const ActionButton = styled.button`
   border-radius: 5px;
   font-family: inherit;
   text-transform: capitalize;
-  font-weight: bold;
-  background: lightgray;
+  font-weight: 600;
+  font-size: 1.4rem;
+  background: var(--clr-accent-purple);
+  border: 0;
   &:hover {
     cursor: pointer;
     opacity: 0.8;
@@ -58,8 +62,10 @@ export const Form = styled.form`
   min-width: 400px;
   display: grid;
   align-items: center;
-  background: var(--clr-white);
+  background: var(--clr-dark-gray-200);
   border-radius: 1rem;
+  border: 1px solid var(--clr-dark-gray-200);
+  color: var(--clr-text-300);
   padding: 1.5rem 1.5rem;
   gap: 1rem;
   h3 {
@@ -77,6 +83,6 @@ export const Form = styled.form`
 export const Error = styled.p`
   font-size: 1.3rem;
   color: red;
-  font-weight: bold;
+  font-weight: 500;
   margin-top: 5px;
 `;

@@ -20,6 +20,6 @@ const OrdersList = ({ id, orders }: Props) => {
 const Ul = styled.ul`
   margin-block: 1rem;
   display: grid;
-  gap: 1rem;
+  gap: 2rem;
 `;
 export default OrdersList;

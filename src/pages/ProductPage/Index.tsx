@@ -30,7 +30,7 @@ const ProductPage = () => {
           </ProductContainer>
           <ProductInfo>
             <div>
-              <span>{category}</span>
+              <Category>{category}</Category>
               <Title>{title}</Title>
               <div>
                 <Price>U$ {price},00</Price>
@@ -52,6 +52,11 @@ const ButtonContainer = styled.div`
   margin-block: 2.4rem;
 `;
 
+const Category = styled.span`
+  color: var(--clr-text-200);
+  text-transform: uppercase;
+  letter-spacing: 0.3rem;
+`;
 const SectionWrapper = styled.div`
   display: flex;
   @media (max-width: 700px) {
@@ -64,6 +69,7 @@ const ProductContainer = styled.div`
   max-width: 600px;
   img {
     height: 100%;
+    border-radius: 1rem;
     object-fit: cover;
   }
   @media (max-width: 700px) {
@@ -73,7 +79,7 @@ const ProductContainer = styled.div`
 
 const ProductInfo = styled.div`
   flex: 1;
-  color: hsla(240, 8%, 28%, 1);
+  color: var(--clr-text-300);
   padding-left: 3.2rem;
   display: grid;
   grid-template-rows: 1fr auto;
@@ -95,7 +101,6 @@ const Price = styled.p`
 const Description = styled.div`
   margin-top: 5.8rem;
   h3 {
-    color: hsla(240, 5%, 48%, 1);
     text-transform: uppercase;
     margin-bottom: 0.8rem;
   }

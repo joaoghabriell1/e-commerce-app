@@ -16,7 +16,7 @@ const Header = () => {
       <MainContainer>
         <HeaderContainer>
           <Logo>
-            <Link to="">e-commerce</Link>
+            <Link to="/">e-commerce</Link>
           </Logo>
           <SearchBar />
           <Cart>
@@ -66,7 +66,7 @@ const Cart = styled.div`
 `;
 
 const HeaderTag = styled.header`
-  background: var(--clr-white);
+  background: #1e1e1e;
   padding-block: 16px;
 `;
 
@@ -77,6 +77,7 @@ const Logo = styled.div`
   font-size: 32px;
   &:hover {
     cursor: pointer;
+    color: var(--clr-accent-purple);
   }
 `;
 export default Header;

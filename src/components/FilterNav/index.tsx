@@ -60,12 +60,13 @@ const FilterList = styled.ul`
 
 const FilterItem = styled.li<FilterItemProps>`
   text-transform: uppercase;
+  opacity: 0.8;
   font-weight: ${(p: FilterItemProps) => (p.currentfilter ? "bold" : "500")};
   border-bottom: ${(p: FilterItemProps) =>
-    p.currentfilter ? "4px solid hsla(16, 100%, 76%, 1)" : "none"};
+    p.currentfilter ? "4px solid #bb86fc" : "none"};
   &:hover {
     cursor: pointer;
-    opacity: 0.8;
+    color: var(--clr-accent-purple);
   }
 `;
 

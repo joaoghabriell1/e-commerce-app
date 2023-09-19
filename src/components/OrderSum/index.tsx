@@ -64,10 +64,11 @@ const Aside = styled.aside`
   padding-block: 1.6rem 2.4rem;
   padding-inline: 2.4rem;
   flex: 1;
-  background: var(--clr-white);
+  background: var(--clr-dark-gray-200);
   position: sticky;
   top: 2.5rem;
   height: 600px;
+  border-radius: 1rem;
 `;
 
 const FlexContainer = styled.div`
@@ -107,10 +108,11 @@ const Button = styled.button`
   width: 100%;
   font: inherit;
   text-transform: uppercase;
-  background: hsl(121, 42%, 52%);
+  background: var(--clr-accent-purple);
   border: 0;
   border-radius: 3px;
-  color: var(--clr-gray-200);
+  color: var(--clr-black-100);
+  font-weight: 500;
   padding-block: 1.2rem;
   &:hover {
     cursor: pointer;

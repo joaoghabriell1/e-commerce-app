@@ -56,7 +56,8 @@ const UserCard = () => {
 
 const CoverLayer = styled.div`
   position: absolute;
-  background: #8080809b;
+  background: var(--clr-dark-gray-200);
+  border-radius: 5px;
   right: 0;
   left: 0;
   bottom: 0;
@@ -78,7 +79,7 @@ const Ul = styled.ul`
   font-size: 1.4rem;
   justify-content: center;
   & > li:hover {
-    color: orangered;
+    color: var(--clr-accent-purple);
     font-weight: 600;
     cursor: pointer;
   }
@@ -90,7 +91,7 @@ const Heading = styled.div`
 
 const InfoCard = styled.div`
   position: absolute;
-  background: var(--clr-white);
+  background: var(--clr-dark-gray-100);
   box-shadow: 1px 1px 10px lightgray;
   width: 250px;
   height: 250px;
@@ -132,13 +133,14 @@ const ActionButton = styled.button`
   background: light;
   border-radius: 5px;
   font-family: inherit;
-  font-weight: bold;
+  font-weight: 600;
   border: 0;
-  padding: 0.6rem;
+  padding: 0.9rem;
   border: 1px solid black;
+  background: var(--clr-accent-purple);
   &:hover {
     cursor: pointer;
-    opacity: 0.8;
+    opacity: 0.9;
   }
 `;
 

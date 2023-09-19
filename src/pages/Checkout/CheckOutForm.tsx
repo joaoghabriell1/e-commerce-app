@@ -61,8 +61,8 @@ const CheckOutForm = forwardRef<HTMLFormElement, Props>((props, ref) => {
 
   return (
     <Form ref={ref} onSubmit={onSubmit}>
+      <Heading>Shipping Info</Heading>
       <Fieldset>
-        <Heading>Shipping Info</Heading>
         <InputContainer>
           <label htmlFor="">Zip Code</label>
           <input
@@ -134,15 +134,15 @@ const CheckOutForm = forwardRef<HTMLFormElement, Props>((props, ref) => {
               required: "House Number Required",
             })}
           />
+          <div>
+            {errors?.houseNumber && (
+              <ErrorMessage>{errors.houseNumber.message}</ErrorMessage>
+            )}
+          </div>
         </InputContainer>
-        <div>
-          {errors?.houseNumber && (
-            <ErrorMessage>{errors.houseNumber.message}</ErrorMessage>
-          )}
-        </div>
       </Fieldset>
+      <Heading>Payment</Heading>
       <Fieldset>
-        <Heading>Payment</Heading>
         <InputContainer>
           <label htmlFor="nameOnCard">Name On Card:</label>
           <input
@@ -232,7 +232,6 @@ const CheckOutForm = forwardRef<HTMLFormElement, Props>((props, ref) => {
 });
 
 const Form = styled.form`
-  width: 500px;
   @media (max-width: 500px) {
     width: 100%;
   }
@@ -246,37 +245,51 @@ const Fieldset = styled.fieldset`
   gap: 1rem;
   position: relative;
   padding-bottom: 2rem;
+  display: flex;
+  flex-flow: row wrap;
+  background: var(--clr-dark-gray-200);
+  border-radius: 1rem;
+  padding: 1rem;
+  & > div {
+    flex-basis: 45%;
+    flex-grow: 1;
+    max-width: 54rem;
+  }
   &::after {
     content: "";
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-    border-bottom: 1px solid lightgray;
   }
 `;
 
 export const Heading = styled.h3`
   margin-bottom: 1rem;
   margin-top: 1rem;
+  font-weight: 600;
 `;
 const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
   input {
     padding: 0.9rem;
+    font-weight: 500;
     border-radius: 5px;
+    background: var(--clr-dark-gray-300);
+    color: var(--clr-text-300);
+    border: 1px solid var(--clr-dark-gray-100);
   }
   input[type="text"]:disabled {
-    background-color: #96929260;
+    background-color: var(--clr-text-100);
     outline: 0;
     border: 2px solid black;
-    font-weight: bold;
+    font-weight: 500;
   }
 
   label {
     font-size: 1.4rem;
-    font-weight: bold;
+    font-weight: 500;
     margin-bottom: 0.4rem;
   }
 `;
@@ -284,6 +297,6 @@ const InputContainer = styled.div`
 const ErrorMessage = styled.p`
   font-size: 1.4rem;
   color: red;
-  font-weight: bold;
+  font-weight: 500;
 `;
 export default CheckOutForm;

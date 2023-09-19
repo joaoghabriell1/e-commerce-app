@@ -33,6 +33,7 @@ const BtnContainer = styled.button`
   display: flex;
   font-family: inherit;
   align-items: center;
+  font-weight: 600;
   padding: 0;
   margin: 0;
   border: 0;
@@ -40,7 +41,7 @@ const BtnContainer = styled.button`
   gap: 1rem;
   padding-block: 1rem;
   border-radius: 5px;
-  background: hsla(203, 78%, 31%, 1);
+  background: var(--clr-accent-purple);
   span {
     color: var(--clr-white);
     text-transform: uppercase;
@@ -57,8 +58,8 @@ const BtnContainer = styled.button`
 const CartImg = styled.img`
   aspect-ratio: 1/1;
   width: 25px;
-  filter: invert(100%) sepia(0%) saturate(225%) hue-rotate(190deg)
-    brightness(106%) contrast(1000%);
+  filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(1deg) brightness(106%)
+    contrast(2000%);
 `;
 
 export default AddToCartBtn;

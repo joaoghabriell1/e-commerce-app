@@ -39,5 +39,6 @@ const OrderContainer = styled.li`
   border: 1px solid black;
   overflow: hidden;
   border-radius: 1rem;
+  background: var(--clr-dark-gray-200);
 `;
 export default OrderItem;

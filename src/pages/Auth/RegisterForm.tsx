@@ -39,9 +39,6 @@ const RegisterForm = () => {
     try {
       setLoading(true);
       const status = await createUser(email, password, data);
-      if (status === undefined) {
-        return;
-      }
     } catch (e) {
       console.log(e);
     } finally {

@@ -11,11 +11,9 @@ const ProductCard = ({ price, title, thumbnail, id }: Product) => {
         </Thumbnail>
       </Link>
       <TitlePriceWrapper>
-        <div>
-          <Link to={`/product/${id}`}>
-            <Title>{title}</Title>
-          </Link>
-        </div>
+        <Link to={`/product/${id}`}>
+          <Title>{title}</Title>
+        </Link>
         <Price>U$ {price},00</Price>
       </TitlePriceWrapper>
     </Container>
@@ -23,21 +21,24 @@ const ProductCard = ({ price, title, thumbnail, id }: Product) => {
 };
 
 const Container = styled.div`
-  background: var(--clr-white);
+  background: #1e1e1e;
+  color: #fff;
   border-radius: 10px;
   overflow: hidden;
   display: grid;
   position: relative;
   max-width: 400px;
+  padding: 1rem;
 `;
 
 const TitlePriceWrapper = styled.div`
-  padding: 0.9rem 1.2rem;
   display: grid;
 `;
 
 const Thumbnail = styled.div`
   height: 275px;
+  overflow: hidden;
+  border-radius: 0.5rem;
   img {
     height: 100%;
     object-fit: cover;
@@ -45,19 +46,22 @@ const Thumbnail = styled.div`
 `;
 
 const Title = styled.h3`
-  color: var(--clr-gray-100);
-  font-weight: 400;
+  color: #fff;
+  opacity: 0.87;
+  font-weight: 500;
   font-size: 1.6rem;
   border-bottom: 1px solid #dce2e5;
   padding-bottom: 0.8rem;
   &:hover {
-    color: hsla(16, 100%, 76%, 1);
+    color: #bb86fc;
   }
+  padding-top: 1rem;
 `;
 
 const Price = styled.div`
   padding-top: 0.8rem;
-  font-weight: bold;
+  font-weight: 400;
+  opacity: 0.6  ;
 `;
 
 export default ProductCard;

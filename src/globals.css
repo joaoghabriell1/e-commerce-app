@@ -1,18 +1,20 @@
 :root {
-  font-family: "Manrope", sans-serif;
+  font-family: "Inter", sans-serif;
   line-height: 1.5;
 
   /* colors */
-  --clr-main-bg: #f0f0f5;
+  --clr-dark-gray-100: #121212;
+  --clr-dark-gray-200: #1d1d1d;
+  --clr-dark-gray-300: #212121;
 
-  --clr-white: hsla(0, 0%, 100%, 1);
-  --clr-orange-100: hsla(22, 93%, 75%, 1);
-  --clr-orange-200: hsla(21, 65%, 57%, 1);
-  --clr-black-100: hsla(0, 0%, 6%, 1);
-  --clr-black-200: hsla(0, 0%, 0%, 1);
-  --clr-gray-100: hsla(240, 8%, 28%, 1);
-  --clr-gray-200: hsla(202, 11%, 96%, 1);
-  --clr-gray-300: hsla(240, 8%, 28%, 1);
+  --clr-text-100: #ffffff61;
+  --clr-text-200: hsla(0, 0%, 100%, 0.6);
+  --clr-text-300: hsla(0, 0%, 100%, 0.87);
+
+  --clr-black-100: hsla(0, 0%, 0%, 1);
+
+  --clr-accent-purple: #bb86fc;
+  --clr-accent-green: #03dac5;
 }
 
 ul {
@@ -20,28 +22,37 @@ ul {
   margin: 0;
   list-style: none;
 }
+
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   opacity: 1;
 }
+
 a {
   text-decoration: none;
   color: inherit;
 }
+
 a:hover {
   cursor: pointer;
 }
+
 * {
   margin: 0;
   box-sizing: border-box;
 }
 
+*:hover {
+  transition: color 0.3s;
+}
+
 html {
   font-size: 62.5%;
 }
+
 body {
-  color: #000;
-  background: var(--clr-main-bg);
+  color: var(--clr-text-300);
+  background: #000;
   margin: 0;
   padding: 0;
   box-sizing: border-box;

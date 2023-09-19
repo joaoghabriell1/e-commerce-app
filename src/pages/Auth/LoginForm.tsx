@@ -64,6 +64,7 @@ const LoginForm = () => {
         <label htmlFor="e-mail">E-mail</label>
         <input
           id="e-mail"
+          defaultValue="example@example.com"
           placeholder="xxxxx@xxx.xxx"
           type="text"
           {...register("email", {
@@ -81,6 +82,7 @@ const LoginForm = () => {
         <input
           id="password"
           type="password"
+          defaultValue="123456"
           placeholder="password"
           {...register("password", {
             required: "Password required",

@@ -29,7 +29,7 @@ const Header = ({ userName, date, total }: Props) => {
 
 const HeaderTag = styled.header`
   display: flex;
-  background: #fff;
+  background: #1e1e1e;
   padding: 1rem;
   gap: 1rem;
 `;

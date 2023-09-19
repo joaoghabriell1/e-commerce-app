@@ -19,13 +19,22 @@ const ReturnButton = styled.button`
   display: flex;
   gap: 1rem;
   align-items: center;
+  font-family: inherit;
   border: 0;
-  font-weight: bold;
-  color: hsla(203, 14%, 44%, 1);
+  font-weight: 600;
+  color: var(--clr-text-300);
+  background: var(--clr-dark-gray-200);
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
   margin-bottom: 2.5rem;
+
   &:hover {
     cursor: pointer;
-    color: hsla(16, 100%, 76%, 1);
+    color: var(--clr-accent-purple);
+    img {
+      filter: invert(52%) sepia(92%) saturate(2169%) hue-rotate(221deg)
+        brightness(103%) contrast(98%);
+    }
   }
   img {
     width: 24px;
